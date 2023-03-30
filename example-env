@@ -1,6 +1,4 @@
-DB_NAME=Initialize_project
-MONGO_CNNSTR=mongodb://localhost:27017/Initialize_project
-IS_SEED=false
-PORT=8000
+PORT=5000
 SECRET_KEY=uV0lLbUzAoAvXpZjiiyxaxmtKY9sYDAN
 STAGE=development  //production //testing
+HUBSPOT_AUTH_TOKEN=pat-na1-35027f99-ca2b-4a36-84b1-aa46c794d010

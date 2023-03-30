@@ -4,9 +4,177 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
     <title>Scan Document</title>
+
+    <style type="text/css">  
+        /* Flipping the video as it was not mirror view */  
+        video {  
+            -webkit-transform: scaleX(-1);  
+            transform: scaleX(-1);  
+            margin-top: 5px;  
+        }  
+      
+        /* Flipping the canvas image as it was not mirror view */  
+        /* #canvas */
+    </style>
 </head>
 <body>
-    <input type="file" accept="image/*" capture="user" />
+    <div class="jumbotron" style="margin-top:20px;padding:20px;">    
+        <p><span id="errorMsg"></span></p>    
+        <div class="row">    
+            <div class="col-lg-6">    
+                <!-- Here we streaming video from webcam -->    
+                <h4>    
+                    Video coming from Webcam  <button class="btn btn-primary" id="btnCapture">Capture to Canvas >></button>    
+                </h4>    
+                <video id="video" playsinline autoplay></video>    
+            </div>    
+        
+            <div class="col-lg-6">    
+                <h4>    
+                    Captured image from Webcam <input type="button" class="btn btn-primary" id="btnSave" name="btnSave" value="Save the canvas(image) to server" />    
+                </h4>    
+                <!-- Webcam video snapshot -->    
+                <canvas style="border:solid 1px #ddd;background-color:white;" id="canvas" width="475" height="475"></canvas>    
+            </div>    
+        </div>    
+    </div>     
 </body>
+<script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+<script>
+  hbspt.forms.create({
+    region: "na1",
+    portalId: "21645343",
+    formId: "cc7c5c18-09ee-4f8f-9d83-d666807c9cff"
+  });
+</script>
+
+<script type="text/javascript">  
+    var video = document.querySelector("#video");  
+  
+    // Basic settings for the video to get from Webcam  
+    const constraints = {  
+        audio: false,  
+        video: {  
+            width: 475, height: 475  
+        }  
+    };  
+  
+    // This condition will ask permission to user for Webcam access  
+    if (navigator.mediaDevices.getUserMedia) {  
+        navigator.mediaDevices.getUserMedia(constraints)  
+            .then(function (stream) {  
+                video.srcObject = stream;  
+            })  
+            .catch(function (err0r) {  
+                console.log("Something went wrong!");  
+            });  
+    }  
+  
+    function stop(e) {  
+        var stream = video.srcObject;  
+        var tracks = stream.getTracks();  
+  
+        for (var i = 0; i < tracks.length; i++) {  
+            var track = tracks[i];  
+            track.stop();  
+        }  
+        video.srcObject = null;  
+    }  
+</script>  
+  
+<script type="text/javascript">  
+    // Below code to capture image from Video tag (Webcam streaming)  
+    $("#btnCapture").click(function () {  
+        var canvas = document.getElementById('canvas');  
+        var context = canvas.getContext('2d');  
+  
+        // Capture the image into canvas from Webcam streaming Video element  
+        context.drawImage(video, 0, 0);  
+
+        // canvas.height = 500;  
+        // canvas.width = 500;  
+  
+        // context.translate(video.videoWidth, 0);  
+        // context.scale(-1, 1);  
+        // context.drawImage(document.getElementById("canvas"), 0, 0);  
+
+        // var formData = new FormData(),
+        // uploadedImageName = 'document.png';
+
+        // canvas.toBlob(function (blob) {
+        //     formData.append('user_picture', blob, uploadedImageName);
+        //     $.ajax({
+        //         url: '/upload-document',
+        //         data: formData,
+        //         type: "POST",
+        //         dataType: "JSON",
+        //         processData: false,
+        //         contentType: false,
+        //     });
+        // });
+    });  
+  
+    // Upload image to server - ajax call - with the help of base64 data as a parameter  
+    $("#btnSave").click(function () {  
+  
+        // Below new canvas to generate flip/mirron image from existing canvas  
+        var destinationCanvas = document.createElement("canvas");  
+        var destCtx = destinationCanvas.getContext('2d');  
+  
+  
+        destinationCanvas.height = 500;  
+        destinationCanvas.width = 500;  
+  
+        destCtx.translate(video.videoWidth, 0);  
+        destCtx.scale(-1, 1);  
+        destCtx.drawImage(document.getElementById("canvas"), 0, 0);  
+
+        var formData = new FormData(),
+        uploadedImageName = 'document.png';
+
+        destinationCanvas.toBlob(function (blob) {
+            formData.append('user_picture', blob, uploadedImageName);
+            $.ajax({
+                url: '/upload-document',
+                data: formData,
+                type: "POST",
+                dataType: "JSON",
+                processData: false,
+                contentType: false,
+            });
+        });
+
+        // $.ajax({  
+        //     type: 'POST',  
+        //     url: '/Home/UploadWebCamImage',  
+        //     data: '{ "imageData" : "' + imagebase64data + '" }',  
+        //     contentType: 'application/json; charset=utf-8',  
+        //     dataType: 'text',  
+        //     success: function (out) {  
+        //         alert('Image uploaded successfully..');  
+        //     }  
+        // });  
+    });  
+
+    function dataURItoBlob(dataURI) {
+        // convert base64/URLEncoded data component to raw binary data held in a string
+        var byteString;
+        if (dataURI.split(',')[0].indexOf('base64') >= 0)
+            byteString = atob(dataURI.split(',')[1]);
+        else
+            byteString = unescape(dataURI.split(',')[1]);
+        // separate out the mime component
+        var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+        // write the bytes of the string to a typed array
+        var ia = new Uint8Array(byteString.length);
+        for (var i = 0; i < byteString.length; i++) {
+            ia[i] = byteString.charCodeAt(i);
+        }
+        return new Blob([ia], {type:mimeString});
+    }
+</script> 
+
 </html>
