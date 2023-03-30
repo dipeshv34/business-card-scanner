@@ -1,0 +1,6 @@
+DB_NAME=Initialize_project
+MONGO_CNNSTR=mongodb://localhost:27017/Initialize_project
+IS_SEED=false
+PORT=8000
+SECRET_KEY=uV0lLbUzAoAvXpZjiiyxaxmtKY9sYDAN
+STAGE=development  //production //testing
