@@ -33,12 +33,25 @@ class ScannerController extends BaseController {
         const [annotation] = result.textAnnotations;
         const text = annotation ? annotation.description.trim() : '';
         arr=text.split(/\r?\n/);
+        let compareResultForName = [];
         for (let i=0; i<arr.length; i++){
           console.log(arr[i]);
           const emailRegx = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/gi;
           if(emailRegx.test(arr[i])){
             values['email']=arr[i];
-            // const emailName = arr[i].substring(0, arr[i].indexOf("@"));
+            const emailName = arr[i].substring(0, arr[i].indexOf("@"));
+
+            for (let j = 0; j < arr.length; j++) {
+              if(arr[j] == arr[i]) {
+                compareResultForName.push(Number.NEGATIVE_INFINITY)
+              } else {
+                compareResultForName.push(this.compare(emailName, arr[j]))
+              }
+            }
+
+            const name = arr[compareResultForName.indexOf(Math.max(...compareResultForName))]
+            values["firstName"] = name.split(" ")[0]
+            values["lastName"] = name.split(" ")[1]
           }
           // const mobileNumberRegx = /^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/gi
           const mobileNumberRegx1 = new RegExp("\\+?\\(?\\d*\\)? ?\\(?\\d+\\)?\\d*([\\s./-]?\\d{2,})+","g");
@@ -66,11 +79,22 @@ class ScannerController extends BaseController {
       }
 
     } catch (e) {
-      console.log("error =>>>>>>>>>>>>>>", e.message)
+      console.log("error =>>>>>>>>>>>>>>", e)
       return res.send({
         status: false
       })
     }
+  }
+
+  compare(strA,strB){
+    for(var result = 0, i = strA.length; i--;){
+        if(typeof strB[i] == 'undefined' || strA[i] == strB[i]);
+        else if(strA[i].toLowerCase() == strB[i].toLowerCase())
+            result++;
+        else
+            result += 4;
+    }
+    return 1 - (result + 4*Math.abs(strA.length - strB.length))/(2*(strA.length+strB.length));
   }
 
   async submitForm (req, res){

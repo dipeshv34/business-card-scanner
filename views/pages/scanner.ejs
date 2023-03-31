@@ -118,8 +118,8 @@
             <form class="form-style-9">
                 <ul>
                     <li>
-                        <input type="text" name="firstname" class="field-style field-split align-left" placeholder="Firstname" />
-                        <input type="text" name="lastname" class="field-style field-split align-right" placeholder="Lastname" />
+                        <input type="text" name="firstname" id="firstname" class="field-style field-split align-left" placeholder="Firstname" />
+                        <input type="text" name="lastname" id="lastname" class="field-style field-split align-right" placeholder="Lastname" />
 
                     </li>
                     <li>
@@ -216,9 +216,17 @@
                 contentType: false,
                 success: function (res, err){
                     if(res.status) {
-                        console.log(res.values)
                         $(`input[name="email"]`).val(res.values.email)
                         $(`input[name="phone"]`).val(res.values.phone)
+                        $(`input[name="firstname"]`).val(res.values.firstName)
+                        $(`input[name="lastname"]`).val(res.values.lastName)
+                        $(`input[name="job_title"]`).val(res.values.job_title)
+                        $(`input[name="company_name"]`).val(res.values.company_name)
+                        $(`input[name="street_address"]`).val(res.values.street_address)
+                        $(`input[name="city"]`).val(res.values.city)
+                        $(`input[name="state"]`).val(res.values.state)
+                        $(`input[name="postal_code"]`).val(res.values.postal_code)
+                        
                         // TODO add regex on text here.
                     } else {
                         alert('Unable to upload a photo')
@@ -250,8 +258,8 @@
     $(document).on("click", "#submitForm", function(e) {
         e.preventDefault();
         const apiData = {
-            firstName: $("#firstName").val(),
-            lastName: $("#lastName").val(),
+            firstName: $("#firstname").val(),
+            lastName: $("#lastname").val(),
             email: $("#email").val(), 
             phone: $("#phone").val(), 
             job_title: $("#job_title").val(), 
@@ -261,7 +269,6 @@
             state: $("#state").val(), 
             postal_code: $("#postal_code").val(), 
         }
-        console.log(apiData)
 
         $.ajax({
             url: '/submit-form',
