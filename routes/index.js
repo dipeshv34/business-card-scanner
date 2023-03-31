@@ -56,6 +56,11 @@ class IndexRoute {
       this.upload.any("user_picture"),
       this.scanDocumentController.scanDocument.bind(this.scanDocumentController)
     )
+
+    this.router.post(
+      "/submit-form",
+      this.scanDocumentController.submitForm.bind(this.scanDocumentController)
+    )
   }
 
 }

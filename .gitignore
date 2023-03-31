@@ -9,6 +9,7 @@
 node_modules/
 dist/
 logs/
+public/documentToScan/
 
 # Compiled Java class files
 *.class

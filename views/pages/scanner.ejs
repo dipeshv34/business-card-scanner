@@ -16,15 +16,15 @@
             margin-top: 5px;  
         }
 
-                              .form-style-9{
-                                  max-width: 800px;
-                                  background: #FAFAFA;
-                                  padding: 30px;
-                                  margin: 50px;
-                                  box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
-                                  border-radius: 10px;
-                                  border: 6px solid #305A72;
-                              }
+        .form-style-9{
+            max-width: 800px;
+            background: #FAFAFA;
+            padding: 30px;
+            margin: 50px;
+            box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+            border-radius: 10px;
+            border: 6px solid #305A72;
+        }
         .form-style-9 ul{
             padding:0;
             margin:0;
@@ -123,25 +123,25 @@
 
                     </li>
                     <li>
-                        <input type="email" name="email" class="field-style field-split align-right" placeholder="Email" />
-                        <input type="text" name="phone" class="field-style field-split align-left" placeholder="Phone" />
+                        <input type="email" id ="email" name="email" class="field-style field-split align-right" placeholder="Email" />
+                        <input type="text" id ="phone" name="phone" class="field-style field-split align-left" placeholder="Phone" />
                     </li>
                     <li>
-                        <input type="text" name="job_title" class="field-style field-split align-left" placeholder="Job Title" />
-                        <input type="text" name="company_name" class="field-style field-split align-right" placeholder="Company Name" />
+                        <input type="text" id ="job_title" name="job_title" class="field-style field-split align-left" placeholder="Job Title" />
+                        <input type="text" id ="company_name" name="company_name" class="field-style field-split align-right" placeholder="Company Name" />
                     </li>
                     <li>
-                        <textarea name="street_address" class="field-style" placeholder="Street Address"></textarea>
+                        <textarea id ="street_address" name="street_address" class="field-style" placeholder="Street Address"></textarea>
                     </li>
                     <li>
-                        <input type="text" name="city" class="field-style field-split align-left" placeholder="City" />
-                        <input type="text" name="state" class="field-style field-split align-right" placeholder="state" />
+                        <input type="text" id ="city" name="city" class="field-style field-split align-left" placeholder="City" />
+                        <input type="text" id ="state" name="state" class="field-style field-split align-right" placeholder="state" />
                     </li>
                     <li>
-                        <input type="text" name="postal_code" class="field-style field-split align-left" placeholder="Postal Code" />
+                        <input type="text" id ="postal_code" name="postal_code" class="field-style field-split align-left" placeholder="Postal Code" />
                     </li>
                     <li>
-                        <input type="submit" value="Send Message" />
+                        <input type="submit" id="submitForm" value="Send Message" />
                     </li>
                 </ul>
             </form>
@@ -216,7 +216,12 @@
                 contentType: false,
                 success: function (res, err){
                     if(res.status) {
+                        console.log(res.values)
+                        $(`input[name="email"]`).val(res.values.email)
+                        $(`input[name="phone"]`).val(res.values.phone)
                         // TODO add regex on text here.
+                    } else {
+                        alert('Unable to upload a photo')
                     }
                 }
             });
@@ -241,6 +246,37 @@
         }
         return new Blob([ia], {type:mimeString});
     }
+
+    $(document).on("click", "#submitForm", function(e) {
+        e.preventDefault();
+        const apiData = {
+            firstName: $("#firstName").val(),
+            lastName: $("#lastName").val(),
+            email: $("#email").val(), 
+            phone: $("#phone").val(), 
+            job_title: $("#job_title").val(), 
+            company_name: $("#company_name").val(), 
+            street_address: $("#street_address").val(), 
+            city: $("#city").val(), 
+            state: $("#state").val(), 
+            postal_code: $("#postal_code").val(), 
+        }
+        console.log(apiData)
+
+        $.ajax({
+            url: '/submit-form',
+            data: apiData,
+            type: "POST",
+            dataType: "JSON",
+            success: function (res, err){
+                if(res.status) {
+                    console.log(res.data)
+                } else {
+                    alert("Unable to submit form")
+                }
+            }
+        })
+    })
 </script> 
 
 </html>
