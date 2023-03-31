@@ -15,6 +15,10 @@
             transform: scaleX(-1);  
             margin-top: 5px;  
         }  
+
+        .hbspt-form {
+            display: none;
+        }
       
         /* Flipping the canvas image as it was not mirror view */  
         /* #canvas */
@@ -144,6 +148,12 @@
                 dataType: "JSON",
                 processData: false,
                 contentType: false,
+                success: function (res, err){
+                    if(res.status) {
+                        // TODO add regex on text here.
+                        $(".hbspt-form").css("display", "block");
+                    }
+                }
             });
         });
 
