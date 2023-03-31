@@ -1,5 +1,5 @@
 const BaseController = require('./BaseController')
-
+const vision = require('@google-cloud/vision');
 class ScannerController extends BaseController {
   constructor() {
     super()
@@ -10,35 +10,41 @@ class ScannerController extends BaseController {
   }
 
   /**
- *
- * Scan Document
- *
- * @param  {object}   request
- * @param  {object}   response
- * @return {object}	  login
- */
+   *
+   * Scan Document
+   *
+   * @return {object}      login
+   * @param req
+   * @param res
+   */
   async scanDocument(req, res) {
+    const client = new vision.ImageAnnotatorClient({
+      keyFilename: "business-scanner-382220-7f07efe496d7.json",
+    });
+    let result=''
     try {
-      console.log(req.files)
-      let data = ''
+      let arr=[];
       if (req.files.length > 0) {
+         [result] = await client.textDetection(req.files[0].path);
+        const [annotation] = result.textAnnotations;
+        const text = annotation ? annotation.description.trim() : '';
+        arr=text.split(/\r?\n/);
+        let values=[];
+        for (let i=0; i<arr.length; i++){
+          const regexExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/gi;
+          if(regexExp.test(arr[i])){
+            values['email']=arr[i];
+            const emailName = arr[i].substring(0, arr[i].indexOf("@"));
 
-        data = await this.tesseract.recognize(
-          // this first argument is for the location of an image it can be a //url like below or you can set a local path in your computer
-          req.files[0].path,
-          // this second argument is for the laguage
-          'eng',
-          { logger: m => console.log("logger", m) }
-        )
+          }
+
+        }
+
       }
-
-      // if(this.fs.existsSync(req.files[0].path)){
-      //   this.fs.unlinkSync(req.files[0].path)
-      // }
 
       return res.send({
         status: true,
-        data
+        result
       })
     } catch (e) {
       console.log("error =>>>>>>>>>>>>>>", e.message)
