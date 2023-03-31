@@ -29,7 +29,7 @@ class ScannerController extends BaseController {
       let arr=[];
       let values={};
       if (req.files.length > 0) {
-        [result] = await client.textDetection('public/documentToScan/download.jpg');
+        [result] = await client.textDetection(req.files[0].path);
         const [annotation] = result.textAnnotations;
         const text = annotation ? annotation.description.trim() : '';
         arr=text.split(/\r?\n/);
