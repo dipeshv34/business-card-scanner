@@ -29,11 +29,10 @@ class ScannerController extends BaseController {
       let arr=[];
       let values={};
       if (req.files.length > 0) {
-        [result] = await client.textDetection(req.files[0].path);
+        [result] = await client.textDetection('./public/documentToScan/download1.jpg');
         const [annotation] = result.textAnnotations;
         const text = annotation ? annotation.description.trim() : '';
         arr=text.split(/\r?\n/);
-        console.log(arr);
         let compareResultForName = [];
         values['address']='';
         for (let i=0; i<arr.length; i++){
@@ -103,10 +102,21 @@ class ScannerController extends BaseController {
 
   async submitForm (req, res){
     try {
-      const properties = res.body;
-      const SimplePublicObjectInputForCreate = { properties, associations: [] };
+      const properties = {
+        firstname: req.body.firstName+'test',
+        lastname: req.body.lastName,
+        email: req.body.email,
+        phone: req.body.phone,
+        // website: req.body.website,
+        company: req.body.company_name,
+        // street_address: req.body.street_address,
+        // city: req.body.city,
+        // state: req.body.state,
+        // postal_code: req.body.postal_code
+      };
 
-      const apiResponse = await this.hubspotClient.crm.contacts.basicApi.create(SimplePublicObjectInputForCreate);
+      const simplePublicObjectInputForCreate = { properties, associations: [] };
+      const apiResponse = await this.hubspotClient.crm.contacts.basicApi.create(simplePublicObjectInputForCreate);
       return res.send({
         status: true,
         data: apiResponse

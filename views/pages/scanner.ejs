@@ -271,12 +271,11 @@
             state: $("#state").val(), 
             postal_code: $("#postal_code").val(), 
         }
-
         $.ajax({
+            type: "POST",
             url: '/submit-form',
             data: apiData,
-            type: "POST",
-            dataType: "JSON",
+            dataType: "json",
             success: function (res, err){
                 if(res.status) {
                     console.log(res.data)
