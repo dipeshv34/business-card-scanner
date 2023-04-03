@@ -35,9 +35,8 @@ class ScannerController extends BaseController {
         arr=text.split(/\r?\n/);
         let compareResultForName = [];
         for (let i=0; i<arr.length; i++){
-          console.log(arr[i]);
           const emailRegx = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/gi;
-          if(emailRegx.test(arr[i])){
+          if(emailRegx.test(arr[i].trim())){
             values['email']=arr[i];
             const emailName = arr[i].substring(0, arr[i].indexOf("@"));
 
@@ -103,7 +102,6 @@ class ScannerController extends BaseController {
       const SimplePublicObjectInputForCreate = { properties, associations: [] };
 
       const apiResponse = await this.hubspotClient.crm.contacts.basicApi.create(SimplePublicObjectInputForCreate);
-      console.log(JSON.stringify(apiResponse, null, 2));
       return res.send({
         status: true,
         data: apiResponse

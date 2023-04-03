@@ -216,6 +216,7 @@
                 contentType: false,
                 success: function (res, err){
                     if(res.status) {
+                        console.log(res);
                         $(`input[name="email"]`).val(res.values.email)
                         $(`input[name="phone"]`).val(res.values.phone)
                         $(`input[name="firstname"]`).val(res.values.firstName)
@@ -226,7 +227,6 @@
                         $(`input[name="city"]`).val(res.values.city)
                         $(`input[name="state"]`).val(res.values.state)
                         $(`input[name="postal_code"]`).val(res.values.postal_code)
-                        
                         // TODO add regex on text here.
                     } else {
                         alert('Unable to upload a photo')
