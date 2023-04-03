@@ -96,12 +96,14 @@
         <p><span id="errorMsg"></span></p>    
         <div class="row">    
             <div class="col-lg-6">    
-                <!-- Here we streaming video from webcam -->    
-                <h4>    
-                    Video coming from Webcam  <button class="btn btn-primary" id="btnCapture">Capture to Canvas >></button>    
-                </h4>    
+                <!-- Here we streaming video from webcam -->
                 <video id="video" playsinline autoplay></video>    
-            </div>    
+            </div>
+            <div class="col-lg-6">
+                <h4>
+                    <button class="btn btn-md btn-primary" id="btnCapture">Start Scan >></button>
+                </h4>
+            </div>
         
             <div class="col-lg-6" style="display: none">
                 <h4>    
@@ -141,7 +143,7 @@
                         <input type="text" id ="postal_code" name="postal_code" class="field-style field-split align-left" placeholder="Postal Code" />
                     </li>
                     <li>
-                        <input type="submit" id="submitForm" value="Send Message" />
+                        <input type="submit" id="submitForm" value="Submit" />
                     </li>
                 </ul>
             </form>
@@ -223,7 +225,7 @@
                         $(`input[name="lastname"]`).val(res.values.lastName)
                         $(`input[name="job_title"]`).val(res.values.job_title)
                         $(`input[name="company_name"]`).val(res.values.company_name)
-                        $(`input[name="street_address"]`).val(res.values.street_address)
+                        $('#street_address').val(res.values.address)
                         $(`input[name="city"]`).val(res.values.city)
                         $(`input[name="state"]`).val(res.values.state)
                         $(`input[name="postal_code"]`).val(res.values.postal_code)
@@ -264,7 +266,7 @@
             phone: $("#phone").val(), 
             job_title: $("#job_title").val(), 
             company_name: $("#company_name").val(), 
-            street_address: $("#street_address").val(), 
+            street_address: $("#street_address").val(),
             city: $("#city").val(), 
             state: $("#state").val(), 
             postal_code: $("#postal_code").val(), 

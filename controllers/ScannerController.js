@@ -33,7 +33,9 @@ class ScannerController extends BaseController {
         const [annotation] = result.textAnnotations;
         const text = annotation ? annotation.description.trim() : '';
         arr=text.split(/\r?\n/);
+        console.log(arr);
         let compareResultForName = [];
+        values['address']='';
         for (let i=0; i<arr.length; i++){
           const emailRegx = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/gi;
           if(emailRegx.test(arr[i].trim())){
@@ -57,6 +59,9 @@ class ScannerController extends BaseController {
           const mobileNumberRegx2 = /(?:[-+() ]*\d){10,13}/gm;
           if(mobileNumberRegx1.test(arr[i]) && mobileNumberRegx2.test(arr[i])){
             values['phone']=arr[i];
+          }
+          if(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[ !"#$%£&'()*+,-.\/:;<=>?@[\\\]^_`{|}~])[A-Za-z\d !"#$£%&'()*+,-.\/:;<=>?[\\\]^_`{|}~]{1,300}$/.test(arr[i].trim())){
+            values['address']+= arr[i];
           }
 
           // const addressRegx = /^[a-zA-Z0-9\s,.'-]{3,}$/g;
