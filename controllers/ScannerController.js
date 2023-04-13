@@ -22,14 +22,14 @@ class ScannerController extends BaseController {
    */
   async scanDocument(req, res) {
     const client = new vision.ImageAnnotatorClient({
-      keyFilename: "business-scanner-382220-7f07efe496d7.json",
+      keyFilename: "business-card-scan-383608-d49003a1b828.json",
     });
     let result=''
     try {
       let arr=[];
       let values={};
       if (req.files.length > 0) {
-        [result] = await client.textDetection('./public/documentToScan/download1.jpg');
+        [result] = await client.textDetection('./public/documentToScan/document.png');
         const [annotation] = result.textAnnotations;
         const text = annotation ? annotation.description.trim() : '';
         arr=text.split(/\r?\n/);

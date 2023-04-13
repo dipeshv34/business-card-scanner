@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "business-card-scan-383608",
+  "private_key_id": "d49003a1b828ae920371809f4cae9a37cd7bdebf",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDCZ3EnbtPQTCEu\nc3c210vxhcUrDNRbouha5vu28iK1poVK57Bdoj6KBiyRSx4U046u/ztozJ9omlrD\nH9k2Rsd6gZ1PF09D3ML/orsaWcuWjG3A+Q0wQH59YzHOOkuuVp6OPeOBkJc8fOZ8\nsRuDBx/toTYln5e7qOxk01tf885ryr8wdZ0nm0Q2zbh0rkTowkG9kQz6cZv6i7qt\nQ+YUDqtH8seBnlgRymisbcCagxs4BJanuOZIolYCSYLmcQx34s02VE+yoAeuk19U\n28mxauypWqX5pi+xZvYlWb4rdne8Y6V/gMJjOFILQ9rf5yHFsANMpo0pRaMCFAf2\nboBL4r61AgMBAAECggEAHXq2K/agZAvHVFXqFATd3UgduAOACE1R0scIEJvzK3yO\n5ebwVaKOvTtmcrnjW+Eg1+SYS7IL0j7l2ITx2UsuYKNbCW1Ndcr6Pu2cVcicGL4+\nvm6F03VUOQtbuBwa8drsvEEiSLl2VZPTF8F7nIjuDIjPvzDOP4TEJB3w00ITYUDf\nqnqBGIOdAP+j14eEjQ76T6/KT32V+4vM+NQlrz0BP7N7rNYzFf393wQu8hJ86iRo\nPx9fs88/c0F+k9Sb2xXLKRMB9+oGZj7KcV3pJDB44/MAe+AvsHPoEWPH+OCh/EaF\neW5EAjtp+Nh7i6zxUmH2SURE85F9lGvGtTNnslLH2QKBgQDsozKzYRnCdlFYJrJh\nFA0dk1jY+QWMMfPkaRjCjEST1QKx5Ij/IviDITVJuIdHWQIr0jDmoALYhsibo/Xd\nSqyek0aPokkeaDe4/kqu4ej+0sFGIwr7d63gvSj0/xNeG+SbcTqyfq4aphHoI9oh\n1+ak4sINpYGGBJ/W9ulZz8c59wKBgQDST5aXeQCeH5L4uHCHIfKEYtY2mZz3l4At\nHJ/RKq0S2Ha4goCqEi+dL0HKVm6jlMmU1aThO1NqQLIOo06gyOmRBEQ7HratgV5c\n0N1kU4KfXQQciAWaUgzxnn71DQw3VIsnHStjs7bg4zMssJnUAAr8wLBAdYkK24Tn\n+E3zLa7BswKBgQDKQnODfutVm2vLvMea0lijft3iFnb3bXrZMDtJjjrPYLH8+yld\nabaf3jJ94ItAIIQKkI3bkcjc6ddtsKbljn4czCTzf/KfWtTF+hQ7hjxwEhPArxMj\n/RdRkF0Bi0QynAS6F/3jswN9I5UKpho78x3gsTDMGTqsIie8xS6O5VmT4QKBgETJ\n+3u3/Fe8BBqOWWAZ3nUmzuI1BH6Hc0lOH4gO6WVMoChhpyv5ntFO77n6411mATlJ\nWBDDktkiKBtZlxJIJP1l49tihGXj9rVtK7zxA7yUdA/Q/eQoCkvNh8Enb2N5p7o3\ndEW8NokAR3DKosYQ7YcWj4/F4flHLAWj1ftAafS5AoGAQ2R9cru+l1S19bFPfiIc\nfMtnsv6RsQVt5aVPkrz4aJlfxxVNsYccJaH5xNQSRHk5Yq2eFCrL5ISuT+UlAm0z\nzKBDCayiWAKHb6TyEQtdJ9Osf37gUKmbGbHFEzCsJXOtti3cUodb4MNtn47DX2B8\n4O07MzOarnB3ABYOX1BnF2M=\n-----END PRIVATE KEY-----\n",
+  "client_email": "scan-card@business-card-scan-383608.iam.gserviceaccount.com",
+  "client_id": "107353138181700136711",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/scan-card%40business-card-scan-383608.iam.gserviceaccount.com"
+}
