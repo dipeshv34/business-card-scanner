@@ -377,9 +377,9 @@
             <!--form-->
             <div class="wrapper">
                 <h3>This is the data we've found from the QR code.</h3>
-                <form class="form-style-9">
+                <form class="form-style-9 dynamicForm">
                     <ul>
-                        <li>
+                        <!-- <li>
                             <input type="text" name="firstname" id="firstname"
                                    class="field-style field-split align-left" placeholder="Firstname" />
                             <input type="text" name="lastname" id="lastname"
@@ -390,12 +390,12 @@
                             <input type="email" id="email" name="email" class="field-style"
                                    placeholder="Email" />
                         </li>
-                        <li>
+                        <li> -->
 <!--                            <input type="text" id="job_title" name="job_title"-->
 <!--                                   class="field-style field-split align-left" placeholder="Job Title" />-->
-                            <input type="text" id="company_website" name="company_website"
+                            <!-- <input type="text" id="company_website" name="company_website"
                                    class="field-style" placeholder="Company Website" />
-                        </li>
+                        </li> -->
 <!--                        <li>-->
 <!--                                <textarea id="street_address" name="street_address" class="field-style"-->
 <!--                                          placeholder="Street Address"></textarea>-->
@@ -410,7 +410,7 @@
 <!--                            <input type="text" id="postal_code" name="postal_code"-->
 <!--                                   class="field-style field-split align-left" placeholder="Postal Code" />-->
 <!--                        </li>-->
-                        <p style="text-align: left">Lead status</p>
+                        <!-- <p style="text-align: left">Lead status</p> -->
 <!--                        <li>-->
 <!--                            <ul>-->
 <!--                                <li>-->
@@ -442,7 +442,7 @@
 <!--                                </li>-->
 <!--                            </ul>-->
 <!--                        </li>-->
-                        <div style="text-align: left">
+                        <!-- <div style="text-align: left">
                             <div>
                                 <div>
                                     <label id="hs_lead_status-label-1">
@@ -517,13 +517,26 @@
                             </label>
                             <div style="display: flex; flex-grow: 1; align-items: flex-start; justify-content: flex-start; flex-direction: row;">
                                 <div class="hs-form__field__options__container" role="group" aria-invalid="false" aria-labelledby="inquiry_type-label" aria-describedby="inquiry_type-description">
-                                    <div style="align-self: flex-start; flex: 0 1 auto;"><label id="inquiry_type-label-1" class="hs-form__field__label hs-form__field__checkbox__label">
-                                            <input id="inquiry_type-input-1" class="hs-form__field__input hs-form__field__checkbox__input" type="checkbox" name="inquiry_type" aria-invalid="false" aria-labelledby="inquiry_type-label-1" aria-describedby="inquiry_type-description" aria-required="false" aria-checked="false" value="Product Inquiry">
-                                            <span class="hs-form__field__checkbox__label-text">Product Inquiry</span></label></div><div style="align-self: flex-start; flex: 0 1 auto;"><label id="inquiry_type-label-2" class="hs-form__field__label hs-form__field__checkbox__label">
+                                    <div style="align-self: flex-start; flex: 0 1 auto;">
+                                        <label id="inquiry_type-label-1" class="hs-form__field__label hs-form__field__checkbox__label">
+                                        <input id="inquiry_type-input-1" class="hs-form__field__input hs-form__field__checkbox__input" type="checkbox" name="inquiry_type" aria-invalid="false" aria-labelledby="inquiry_type-label-1" aria-describedby="inquiry_type-description" aria-required="false" aria-checked="false" value="Product Inquiry">
+                                            <span class="hs-form__field__checkbox__label-text">Product Inquiry</span>
+                                        
+                                        </label>
+                                    </div>
+                                    <div style="align-self: flex-start; flex: 0 1 auto;"><label id="inquiry_type-label-2" class="hs-form__field__label hs-form__field__checkbox__label">
                                             <input id="inquiry_type-input-2" class="hs-form__field__input hs-form__field__checkbox__input" type="checkbox" name="inquiry_type" aria-invalid="false" aria-labelledby="inquiry_type-label-2" aria-describedby="inquiry_type-description" aria-required="false" aria-checked="false" value="Partnership Inquiry">
-                                            <span class="hs-form__field__checkbox__label-text">Partnership Inquiry</span></label></div><div style="align-self: flex-start; flex: 0 1 auto;"><label id="inquiry_type-label-3" class="hs-form__field__label hs-form__field__checkbox__label">
+                                            <span class="hs-form__field__checkbox__label-text">Partnership Inquiry</span>
+                                        </label>
+                                    </div>
+                                    <div style="align-self: flex-start; flex: 0 1 auto;"><label id="inquiry_type-label-3" class="hs-form__field__label hs-form__field__checkbox__label">
                                             <input id="inquiry_type-input-3" class="hs-form__field__input hs-form__field__checkbox__input" type="checkbox" name="inquiry_type" aria-invalid="false" aria-labelledby="inquiry_type-label-3" aria-describedby="inquiry_type-description" aria-required="false" aria-checked="false" value="Others">
-                                                <span class="hs-form__field__checkbox__label-text">Others</span></label></div></div></div></div>
+                                                <span class="hs-form__field__checkbox__label-text">Others</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         <br>
                         <li style="display: block;text-align: left">
                             <label id="partner_type-label" for="partner_type-input" class="hs-form__field__label hs-form__field__label--required" data-required="true"><span>Partner Category: </span></label>
@@ -552,7 +565,7 @@
                             <select id="partner_status-input" class="hs-form__field__input is-placeholder" name="partner_status" required="" aria-invalid="false" aria-labelledby="partner_status-label" aria-describedby="partner_status-description" aria-required="true"><option label="Please Select" disabled="" value="">Please Select</option><option label="Existing" value="Existing">Existing</option><option label="New" value="New">New</option></select></div>
                         <br>
                         <div class="hs-form__field hs-form__field-sales_owner hs-sales_owner" style="text-align: left"><label id="sales_owner-label" for="sales_owner-input" class="hs-form__field__label hs-form__field__label--required" data-required="true"><span>Sales Owner</span></label><br>
-                            <select id="sales_owner-input" class="hs-form__field__input is-placeholder" name="sales_owner" required="" aria-invalid="false" aria-labelledby="sales_owner-label" aria-describedby="sales_owner-description" aria-required="true"><option label="Please Select" disabled="" value="">Please Select</option><option label="Praveen Jaglan" value="Praveen Jaglan">Praveen Jaglan</option><option label="Manoj" value="Manoj">Manoj</option><option label="Fredrick" value="Fredrick">Fredrick</option><option label="Willie Kanyeki Maina" value="Willie Kanyeki Maina">Willie Kanyeki Maina</option><option label="Sheshagiri Sudheer Malliah" value="Sheshagiri Sudheer Malliah">Sheshagiri Sudheer Malliah</option><option label="Andronica" value="Andronica">Andronica</option><option label="Kaushik" value="Kaushik">Kaushik</option><option label="Sebastian" value="Sebastian">Sebastian</option><option label="Karen" value="Karen">Karen</option><option label="Edward" value="Edward">Edward</option><option label="Christopher" value="Christopher">Christopher</option><option label="Bassem Hassan Awada" value="Bassem Hassan Awada">Bassem Hassan Awada</option><option label="Daniel Philip Chackaparambil" value="Daniel Philip Chackaparambil">Daniel Philip Chackaparambil</option><option label="Moustafa" value="Moustafa">Moustafa</option><option label="Miller" value="Miller">Miller</option><option label="Hicham" value="Hicham">Hicham</option><option label="Diego" value="Diego">Diego</option><option label="Sahal" value="Sahal">Sahal</option><option label="Carlos" value="Carlos">Carlos</option><option label="Prabhakaran" value="Prabhakaran">Prabhakaran</option><option label="Mamadou Wilane" value="Mamadou Wilane">Mamadou Wilane</option><option label="Deepak Bhutra" value="Deepak Bhutra">Deepak Bhutra</option><option label="Koert Grasveld" value="Koert Grasveld">Koert Grasveld</option><option label="David Anthony John Backshall" value="David Anthony John Backshall">David Anthony John Backshall</option><option label="Jasper" value="Jasper">Jasper</option><option label="Maysara" value="Maysara">Maysara</option><option label="Cristina" value="Cristina">Cristina</option><option label="Maria Sellar" value="Maria Sellar">Maria Sellar</option></select></div>
+                            <select id="sales_owner-input" class="hs-form__field__input is-placeholder" name="sales_owner" required="" aria-invalid="false" aria-labelledby="sales_owner-label" aria-describedby="sales_owner-description" aria-required="true"><option label="Please Select" disabled="" value="">Please Select</option><option label="Praveen Jaglan" value="Praveen Jaglan">Praveen Jaglan</option><option label="Manoj" value="Manoj">Manoj</option><option label="Fredrick" value="Fredrick">Fredrick</option><option label="Willie Kanyeki Maina" value="Willie Kanyeki Maina">Willie Kanyeki Maina</option><option label="Sheshagiri Sudheer Malliah" value="Sheshagiri Sudheer Malliah">Sheshagiri Sudheer Malliah</option><option label="Andronica" value="Andronica">Andronica</option><option label="Kaushik" value="Kaushik">Kaushik</option><option label="Sebastian" value="Sebastian">Sebastian</option><option label="Karen" value="Karen">Karen</option><option label="Edward" value="Edward">Edward</option><option label="Christopher" value="Christopher">Christopher</option><option label="Bassem Hassan Awada" value="Bassem Hassan Awada">Bassem Hassan Awada</option><option label="Daniel Philip Chackaparambil" value="Daniel Philip Chackaparambil">Daniel Philip Chackaparambil</option><option label="Moustafa" value="Moustafa">Moustafa</option><option label="Miller" value="Miller">Miller</option><option label="Hicham" value="Hicham">Hicham</option><option label="Diego" value="Diego">Diego</option><option label="Sahal" value="Sahal">Sahal</option><option label="Carlos" value="Carlos">Carlos</option><option label="Prabhakaran" value="Prabhakaran">Prabhakaran</option><option label="Mamadou Wilane" value="Mamadou Wilane">Mamadou Wilane</option><option label="Deepak Bhutra" value="Deepak Bhutra">Deepak Bhutra</option><option label="Koert Grasveld" value="Koert Grasveld">Koert Grasveld</option><option label="David Anthony John Backshall" value="David Anthony John Backshall">David Anthony John Backshall</option><option label="Jasper" value="Jasper">Jasper</option><option label="Maysara" value="Maysara">Maysara</option><option label="Cristina" value="Cristina">Cristina</option><option label="Maria Sellar" value="Maria Sellar">Maria Sellar</option></select></div> -->
 
                         <li class="submit">
                             <input type="submit" class="button" id="submitForm" value="Submit" />
@@ -585,6 +598,86 @@
 <!--        target:".formContainer"-->
 <!--    });-->
 <!--</script>-->
+
+<script type="text/javascript">
+
+    $.ajax({
+        url: '/get-form',
+        type: "GET",
+        success: function(res, err) {
+            if(res.status) {
+                let setFormHTML = '';
+                let inputString = `<li> <input type="text" name="__NAME__" id="__NAME__" class="field-style field-split align-left" placeholder="__LABEL__" required=__REQUIRED__ /></li>`
+                let textAreaString = `<li> <textarea  id="__NAME__" name="__NAME__" class="field-style" placeholder="__LABEL__" required=__REQUIRED__></textarea> </li>`
+                let optionString = `<option label="__LABEL__" value="__VALUE__">__LABEL__</option>`
+                let dropdownString = `<li style="display: block;text-align: left">
+                            <label id="__NAME__-label" for="__NAME__-input" class="hs-form__field__label hs-form__field__label--required" data-required="__REQUIRED__"><span>__SELECT_LABEL__: </span></label>
+                            <br><select id="__NAME__-input" class="field-style" name="__NAME__">
+                                <option label="Please Select" disabled="" value="">Please Select</option>`
+
+                let radioBtnString = `<div>
+                                    <label id="__NAME__-label-1">
+                                        <input id="__NAME__-input-1" type="radio" name="__NAME__" value="__VALUE__">
+                                        <span>__LABEL__</span>
+                                    </label>
+                                </div>`
+
+                let checkboxString = `<div style="align-self: flex-start; flex: 0 1 auto;"><label id="__NAME__-label-2" class="hs-form__field__label hs-form__field__checkbox__label">
+                                            <input id="__NAME__-input-2" class="hs-form__field__input hs-form__field__checkbox__input" type="checkbox" name="__NAME__" aria-invalid="false" aria-labelledby="__NAME__-label-2" aria-describedby="__NAME__-description" aria-required="true" aria-checked="false" value="__VALUE__">
+                                            <span class="hs-form__field__checkbox__label-text">__LABEL__</span>
+                                        </label>
+                                    </div>`
+                let formHTML = JSON.parse(res.data)
+                if(formHTML.results[0] && formHTML.results[0].fieldGroups && formHTML.results[0] && formHTML.results[0].fieldGroups.length > 0) {
+                    formHTML.results[0].fieldGroups.forEach(e => {
+                        if(e.fields && e.fields.length > 0) {
+                            // loop over fields
+                            e.fields.forEach(field => {
+                                if(field.fieldType === "single_line_text" || field.fieldType === "email") {
+                                    setFormHTML += inputString.replace(/__NAME__/g, field.name).replace(/__LABEL__/g, field.label).replace(/__REQUIRED__/g, field.required)
+                                } else if (field.fieldType === "multi_line_text") {
+                                    setFormHTML += textAreaString.replace(/__NAME__/g, field.name).replace(/__LABEL__/g, field.label).replace(/__REQUIRED__/g, field.required)
+                                } else if (field.fieldType === "dropdown") {
+                                    setFormHTML += dropdownString.replace(/__NAME__/g, field.name).replace(/__SELECT_LABEL__/g, field.label).replace(/__REQUIRED__/g, field.required)
+                                    for (const option of field.options) {
+                                        setFormHTML += optionString.replace(/__LABEL__/g, option.label).replace(/__VALUE__/g, option.value)
+                                    }
+                                    setFormHTML += '</select></li><br>'
+                                } else if (field.fieldType === "radio") {
+                                    if(field.name === "hs_lead_status") {
+                                        setFormHTML += `<p style="text-align: left">${field.label}</p>`
+                                    }
+                                    setFormHTML += `<div style="text-align: left"> <div>`
+
+                                    for (const option of field.options) {
+                                        setFormHTML += radioBtnString.replace(/__NAME__/g, field.name).replace(/__VALUE__/g, option.value).replace(/__LABEL__/g, option.label)
+                                    }
+                                    setFormHTML += `</div></div><br>`
+                                } else if (field.fieldType === "multiple_checkboxes") {
+                                    setFormHTML += `<div class="hs-form__field hs-form__field-${field.name} hs-${field.name}" style="text-align: left">
+                                                <label id="${field.name}-label" for="${field.name}-input" class="hs-form__field__label hs-form__field__label--required" data-required="${field.required}">
+                                                    <p>${field.label}</p>
+                                                </label>
+                                                <div style="display: flex; flex-grow: 1; align-items: flex-start; justify-content: flex-start; flex-direction: row;">
+                                                    <div class="hs-form__field__options__container" role="group" aria-invalid="false" aria-labelledby="${field.name}-label" aria-describedby="${field.name}-description">`
+
+                                    for (const option of field.options) {
+                                        setFormHTML += checkboxString.replace(/__NAME__/g, field.name).replace(/__LABEL__/g, option.label).replace(/__VALUE__/g, option.value)
+                                    }
+
+                                    setFormHTML += `</div></div></div><br>`
+                                }
+                            })
+                        }
+                    });
+                }
+
+                $('.submit').before(setFormHTML);
+            }
+        }
+    })
+
+</script>
 
 <script type="text/javascript">
     var video = document.querySelector("#video");
@@ -653,7 +746,7 @@
                         $(document).find('.step3').show();
                         $(document).find('.hbspt-form').show();
                         $(document).find('input[name="email"]').val(res.values.email)
-                        $(document).find('input[name="company_website"]').val(res.values.website)
+                        $(document).find('input[name="website"]').val(res.values.website)
                         // $(`input[name="phone"]`).val(res.values.phone)
                         $(document).find('input[name="firstname"]').val(res.values.firstName)
                         $(document).find('input[name="lastname"]').val(res.values.lastName)
@@ -699,15 +792,16 @@
             email: $("#email").val(),
             // phone: $("#phone").val(),
             // job_title: $("#job_title").val(),
-            company_name: $("#company_website").val(),
+            website: $("#website").val(),
 
             // street_address: $("#street_address").val(),
             // city: $("#city").val(),
             // state: $("#state").val(),
             // postal_code: $("#postal_code").val(),
-            lead_status:$('input[name=lead_status]').val(),
+            notes: $('textarea[name=notes]').val(),
+            lead_status:$('input[name=hs_lead_status]').val(),
             inquiry_type:$('input[name=inquiry_type]').val(),
-            partner_type:$('select[name=partner_type]').val(),
+            partner_category:$('select[name=partner_category]').val(),
             partner_status:$('select[name=partner_status]').val(),
             sales_owner:$('select[name=sales_owner]').val()
 

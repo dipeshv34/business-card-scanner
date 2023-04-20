@@ -5,11 +5,58 @@ class ScannerController extends BaseController {
     super()
     this.es6BindAll = require("es6bindall");
     this.tesseract = require('tesseract.js');
+    this.http = require("https");
     this.fs = require('fs');
-    this.es6BindAll(this, ["scanDocument"]);
+    this.es6BindAll(this, ["scanDocument", "getForm"]);
     // Starting November 30, 2022, API keys will be sunset as an authentication method. Learn more about this change: https://developers.hubspot.com/changelog/upcoming-api-key-sunset and how to migrate an API key integration: https://developers.hubspot.com/docs/api/migrate-an-api-key-integration-to-a-private-app to use a private app instead.
     this.hubspot = require('@hubspot/api-client');
     this.hubspotClient = new this.hubspot.Client({"accessToken":process.env.HUBSPOT_AUTH_TOKEN});
+  }
+
+  /**
+   * Get form fields
+   * 
+   * @return {object}
+   * @param req
+   * @param res
+   */
+  async getForm(_, res) {
+    try {
+      var options = {
+        "method": "GET",
+        "hostname": "api.hubapi.com",
+        "port": null,
+        "path": "/marketing/v3/forms/",
+        "headers": {
+          "accept": "application/json",
+          "authorization": `Bearer ${process.env.HUBSPOT_AUTH_TOKEN}`
+        }
+      };
+
+      var req = this.http.request(options, function (data) {
+        var chunks = [];
+      
+        data.on("data", function (chunk) {
+          chunks.push(chunk);
+        });
+      
+        data.on("end", function () {
+          var body = Buffer.concat(chunks);
+          return res.send({
+            status: true,
+            data: body.toString()
+          })
+          // return body
+        });
+      });
+      
+      req.end();
+    } catch (e) {
+      console.log("error =>>>>>>>>>>>>>>", e)
+      return res.send({
+        status: false
+      })
+    }
   }
 
   /**
@@ -124,18 +171,18 @@ class ScannerController extends BaseController {
   async submitForm (req, res){
     try {
       const properties = {
-        firstname: req.body.firstName+'test',
+        firstname: req.body.firstName,
         lastname: req.body.lastName,
         email: req.body.email,
         phone: req.body.phone,
-        // website: req.body.website,
-        company: req.body.company_name,
-        // street_address: req.body.street_address,
-        // city: req.body.city,
-        // state: req.body.state,
-        // postal_code: req.body.postal_code
+        website: req.body.website,
+        notes: req.body.notes,
+        hs_lead_status: req.body.lead_status,
+        inquiry_type: req.body.inquiry_type,
+        partner_category: req.body.partner_category,
+        partner_status: req.body.partner_status,
+        sales_owner: req.body.sales_owner
       };
-
       const simplePublicObjectInputForCreate = { properties, associations: [] };
       const apiResponse = await this.hubspotClient.crm.contacts.basicApi.create(simplePublicObjectInputForCreate);
       return res.send({

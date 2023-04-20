@@ -51,6 +51,11 @@ class IndexRoute {
       this.authController.logout.bind(this.authController)
     )
 
+    this.router.get(
+      "/get-form",
+      this.scanDocumentController.getForm.bind(this.scanDocumentController)
+    )
+
     this.router.post(
       "/upload-document",
       this.upload.any("user_picture"),
