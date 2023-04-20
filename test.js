@@ -11,7 +11,6 @@ const client = new vision.ImageAnnotatorClient({
 // const fileName = 'Local image file, e.g. /path/to/image.png';
 
 // Performs text detection on the local file
-
 (async () => {
     const [result] = await client.textDetection('./test.jpg');
     const detections = result.textAnnotations;
