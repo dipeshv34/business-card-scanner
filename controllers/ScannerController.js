@@ -69,7 +69,7 @@ class ScannerController extends BaseController {
    */
   async scanDocument(req, res) {
     const client = new vision.ImageAnnotatorClient({
-      keyFilename: "business-scan-card-73d8a2a99a66.json",
+      keyFilename: "business-scan-card-key.json",
     });
     let result=''
     try {
