@@ -56,12 +56,11 @@ class App{
     
     this.app.use('/', this.indexRouter);
 
-    this.http = require("http")
+    this.https = require("https")
     this.port = this.normalizePort(process.env.PORT || "3000")
-
     this.app.set("port", this.port)
 
-    this.server = this.http.createServer(this.app)
+    this.server = this.https.createServer(this.app)
 
     this.server.listen(this.port,function(){
       console.log("Listening to the port: ",process.env.PORT || "3000");
