@@ -625,7 +625,7 @@
         success: function(res, err) {
             if(res.status) {
                 let setFormHTML = '';
-                let inputString = `<li> <input type="text" name="__NAME__" id="__NAME__" class="field-style field-split align-left" placeholder="__LABEL__" required=__REQUIRED__ /></li>`
+                let inputString = `<li> <input type="text" name="__NAME__" id="__NAME__" class="field-style field-split align-left" placeholder="__LABEL__" required /></li>`
                 let textAreaString = `<li> <textarea  id="__NAME__" name="__NAME__" class="field-style" placeholder="__LABEL__" required=__REQUIRED__></textarea> </li>`
                 let optionString = `<option label="__LABEL__" value="__VALUE__">__LABEL__</option>`
                 let dropdownString = `<li style="display: block;text-align: left">
@@ -804,10 +804,14 @@
 
     $(document).on("click", "#submitForm", function (e) {
         e.preventDefault();
+       let firstName= $("#firstname").val();
+       let lastName= $("#lastname").val();
+       let email= $("#email").val();
         const apiData = {
-            firstName: $("#firstname").val(),
-            lastName: $("#lastname").val(),
-            email: $("#email").val(),
+            firstName:firstName,
+            lastName:lastName,
+            email:email,
+
             // phone: $("#phone").val(),
             // job_title: $("#job_title").val(),
             website: $("#website").val(),
@@ -823,6 +827,15 @@
             partner_status:$('select[name=partner_status]').val(),
             sales_owner:$('select[name=sales_owner]').val()
 
+        }
+        if(firstName==''){
+            return alert('First name required!');
+        }
+        if(lastName==''){
+            return alert('Last name required!');
+        }
+        if (email=='' || !(/^[\-0-9a-zA-Z\.\+_]+@[\-0-9a-zA-Z\.\+_]+\.[a-zA-Z]{2,}$/).test(email)){
+            return  alert('Email is not valid.');
         }
         $.ajax({
             type: "POST",
