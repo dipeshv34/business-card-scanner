@@ -270,6 +270,11 @@
             height: auto;
         }
 
+        #rotateCamera {
+            display: none;
+            margin: 0 auto;
+        }
+
         .main .illustration svg {
             width: 100%;
             height: 100%;
@@ -293,7 +298,7 @@
         }
 
         .hs-form__field__label:not([class*="checkbox"]) p {
-        margin: 0;
+            margin: 0;
         }
 
 
@@ -376,6 +381,9 @@
                     </div>
                     <h4 class="text-light">To get accurate results <br>keep card visible within frame.</h4>
                     <div class="scannerBtn">
+                        <button class="btn btn-md btn-primary" id="rotateCamera">Change Camera</button>
+                    </div>
+                    <div class="scannerBtn">
                         <button class="btn btn-md btn-primary" id="btnCapture">Scan Now</button>
                     </div>
                     <div class="col-lg-6" style="display: none">
@@ -409,57 +417,57 @@
                                    placeholder="Email" />
                         </li>
                         <li> -->
-<!--                            <input type="text" id="job_title" name="job_title"-->
-<!--                                   class="field-style field-split align-left" placeholder="Job Title" />-->
-                            <!-- <input type="text" id="company_website" name="company_website"
-                                   class="field-style" placeholder="Company Website" />
-                        </li> -->
-<!--                        <li>-->
-<!--                                <textarea id="street_address" name="street_address" class="field-style"-->
-<!--                                          placeholder="Street Address"></textarea>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <input type="text" id="city" name="city" class="field-style field-split align-left"-->
-<!--                                   placeholder="City" />-->
-<!--                            <input type="text" id="state" name="state" class="field-style field-split align-right"-->
-<!--                                   placeholder="state" />-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <input type="text" id="postal_code" name="postal_code"-->
-<!--                                   class="field-style field-split align-left" placeholder="Postal Code" />-->
-<!--                        </li>-->
+                        <!--                            <input type="text" id="job_title" name="job_title"-->
+                        <!--                                   class="field-style field-split align-left" placeholder="Job Title" />-->
+                        <!-- <input type="text" id="company_website" name="company_website"
+                               class="field-style" placeholder="Company Website" />
+                    </li> -->
+                        <!--                        <li>-->
+                        <!--                                <textarea id="street_address" name="street_address" class="field-style"-->
+                        <!--                                          placeholder="Street Address"></textarea>-->
+                        <!--                        </li>-->
+                        <!--                        <li>-->
+                        <!--                            <input type="text" id="city" name="city" class="field-style field-split align-left"-->
+                        <!--                                   placeholder="City" />-->
+                        <!--                            <input type="text" id="state" name="state" class="field-style field-split align-right"-->
+                        <!--                                   placeholder="state" />-->
+                        <!--                        </li>-->
+                        <!--                        <li>-->
+                        <!--                            <input type="text" id="postal_code" name="postal_code"-->
+                        <!--                                   class="field-style field-split align-left" placeholder="Postal Code" />-->
+                        <!--                        </li>-->
                         <!-- <p style="text-align: left">Lead status</p> -->
-<!--                        <li>-->
-<!--                            <ul>-->
-<!--                                <li>-->
-<!--                                    <input type="radio" class="field-style field-split align-left" id="" name="lead_status" value="Move to Lead">Move to Lead <br>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <input type="radio" class="field-style field-split align-left" id="" name="lead_status" value="New- No Conversation started">New- No Conversation started <br>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <input type="radio" class="field-style field-split align-left" id="" name="lead_status" value="Prospecting- Conversation started">Prospecting- Conversation started <br>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <input type="radio" class="field-style field-split align-left" id="" name="lead_status" value="Discovery Meeting Booked- Meeting/Demo booked">Discovery Meeting Booked- Meeting/Demo booked <br>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <input type="radio" class="field-style field-split align-left" id="" name="lead_status" value="Qualified- Ready to receive quote">Qualified- Ready to receive quote <br>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <input type="radio" class="field-style field-split align-left" id="" name="lead_status" value="Qualified- Add to nurture- Need more marketing effort">Qualified- Add to nurture- Need more marketing effort <br>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <input type="radio" class="field-style field-split align-left" id="" name="lead_status" value="Unqualified- Not a good fit">Unqualified- Not a good fit <br>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <input type="radio" class="field-style field-split align-left" id="" name="lead_status" value="Prospecting - Not met">Prospecting - Not met <br>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <input type="radio" class="field-style field-split align-left" id="" name="lead_status" value="Create Opportunity">Create Opportunity <br>-->
-<!--                                </li>-->
-<!--                            </ul>-->
-<!--                        </li>-->
+                        <!--                        <li>-->
+                        <!--                            <ul>-->
+                        <!--                                <li>-->
+                        <!--                                    <input type="radio" class="field-style field-split align-left" id="" name="lead_status" value="Move to Lead">Move to Lead <br>-->
+                        <!--                                </li>-->
+                        <!--                                <li>-->
+                        <!--                                    <input type="radio" class="field-style field-split align-left" id="" name="lead_status" value="New- No Conversation started">New- No Conversation started <br>-->
+                        <!--                                </li>-->
+                        <!--                                <li>-->
+                        <!--                                    <input type="radio" class="field-style field-split align-left" id="" name="lead_status" value="Prospecting- Conversation started">Prospecting- Conversation started <br>-->
+                        <!--                                </li>-->
+                        <!--                                <li>-->
+                        <!--                                    <input type="radio" class="field-style field-split align-left" id="" name="lead_status" value="Discovery Meeting Booked- Meeting/Demo booked">Discovery Meeting Booked- Meeting/Demo booked <br>-->
+                        <!--                                </li>-->
+                        <!--                                <li>-->
+                        <!--                                    <input type="radio" class="field-style field-split align-left" id="" name="lead_status" value="Qualified- Ready to receive quote">Qualified- Ready to receive quote <br>-->
+                        <!--                                </li>-->
+                        <!--                                <li>-->
+                        <!--                                    <input type="radio" class="field-style field-split align-left" id="" name="lead_status" value="Qualified- Add to nurture- Need more marketing effort">Qualified- Add to nurture- Need more marketing effort <br>-->
+                        <!--                                </li>-->
+                        <!--                                <li>-->
+                        <!--                                    <input type="radio" class="field-style field-split align-left" id="" name="lead_status" value="Unqualified- Not a good fit">Unqualified- Not a good fit <br>-->
+                        <!--                                </li>-->
+                        <!--                                <li>-->
+                        <!--                                    <input type="radio" class="field-style field-split align-left" id="" name="lead_status" value="Prospecting - Not met">Prospecting - Not met <br>-->
+                        <!--                                </li>-->
+                        <!--                                <li>-->
+                        <!--                                    <input type="radio" class="field-style field-split align-left" id="" name="lead_status" value="Create Opportunity">Create Opportunity <br>-->
+                        <!--                                </li>-->
+                        <!--                            </ul>-->
+                        <!--                        </li>-->
                         <!-- <div style="text-align: left">
                             <div>
                                 <div>
@@ -539,7 +547,7 @@
                                         <label id="inquiry_type-label-1" class="hs-form__field__label hs-form__field__checkbox__label">
                                         <input id="inquiry_type-input-1" class="hs-form__field__input hs-form__field__checkbox__input" type="checkbox" name="inquiry_type" aria-invalid="false" aria-labelledby="inquiry_type-label-1" aria-describedby="inquiry_type-description" aria-required="false" aria-checked="false" value="Product Inquiry">
                                             <span class="hs-form__field__checkbox__label-text">Product Inquiry</span>
-                                        
+
                                         </label>
                                     </div>
                                     <div style="align-self: flex-start; flex: 0 1 auto;"><label id="inquiry_type-label-2" class="hs-form__field__label hs-form__field__checkbox__label">
@@ -618,7 +626,7 @@
 <!--</script>-->
 
 <script type="text/javascript">
-
+    var cameraEnvironment = 'user'
     $.ajax({
         url: '/get-form',
         type: "GET",
@@ -698,27 +706,29 @@
 </script>
 
 <script type="text/javascript">
-    var video = document.querySelector("#video");
+    function startCam(env) {
 
-    // Basic settings for the video to get from Webcam
-    const constraints = {
-        audio: false,
-        video: {
-            width: 475, height: 475
+        const constraints = {
+            audio: false,
+            video: {
+                width: 475, height: 475,
+                // facingMode: { exact: "environment" },
+                facingMode: env,
+            },
+        };
+
+
+        if (navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia(constraints)
+                .then(function (stream) {
+                    video.srcObject = stream;
+                })
+                .catch(function (err0r) {
+                    console.log("Something went wrong!", err0r);
+                });
         }
-    };
 
-    // This condition will ask permission to user for Webcam access
-    if (navigator.mediaDevices.getUserMedia) {
-        navigator.mediaDevices.getUserMedia(constraints)
-            .then(function (stream) {
-                video.srcObject = stream;
-            })
-            .catch(function (err0r) {
-                console.log("Something went wrong!");
-            });
     }
-
     function stop(e) {
         var stream = video.srcObject;
         var tracks = stream.getTracks();
@@ -729,17 +739,38 @@
         }
         video.srcObject = null;
     }
+
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        // some code..
+        console.log('navigator.userAgent', navigator.userAgent)
+
+        $("#rotateCamera").css('display', 'block');
+    }
+
+    var video = document.querySelector("#video");
+
+    // Basic settings for the video to get from Webcam
+
+    // This condition will ask permission to user for Webcam access
+    startCam(cameraEnvironment)
 </script>
 
 <script type="text/javascript">
-
+    $(document).on("click", '#rotateCamera', function() {
+        if(cameraEnvironment === 'user') {
+            cameraEnvironment = 'environment'
+        } else {
+            cameraEnvironment = 'user'
+        }
+        startCam(cameraEnvironment)
+    })
     $('.stepChange').on("click", function(){
         $('.step').hide();
         var target = $(this).attr('data-trigger');
         $(target).show()
     });
 
-    // Below code to capture image from Video tag (Webcam streaming)  
+    // Below code to capture image from Video tag (Webcam streaming)
     $("#btnCapture").click(function () {
         var canvas = document.getElementById('canvas');
         var destCtx = canvas.getContext('2d');
@@ -765,11 +796,12 @@
                         $(document).find('.hbspt-form').show();
                         $(document).find('input[name="email"]').val(res.values.email)
                         $(document).find('input[name="website"]').val(res.values.website)
-                        // $(`input[name="phone"]`).val(res.values.phone)
+                        $(document).find(`input[name="phone"]`).val(res.values.phone)
                         $(document).find('input[name="firstname"]').val(res.values.firstName)
                         $(document).find('input[name="lastname"]').val(res.values.lastName)
                         // $(`input[name="job_title"]`).val(res.values.job_title)
-                        // $(`input[name="company_name"]`).val(res.values.company_name)
+                        $(document).find(`input[name="company_name"]`).val(res.values.company_name)
+                        $(document).find(`input[name="country"]`).val(res.values.country)
                         // $('#street_address').val(res.values.address)
                         // $(`input[name="city"]`).val(res.values.city)
                         // $(`input[name="state"]`).val(res.values.state)
@@ -804,17 +836,19 @@
 
     $(document).on("click", "#submitForm", function (e) {
         e.preventDefault();
-       let firstName= $("#firstname").val();
-       let lastName= $("#lastname").val();
-       let email= $("#email").val();
+        let firstName= $("#firstname").val();
+        let lastName= $("#lastname").val();
+        let email= $("#email").val();
         const apiData = {
             firstName:firstName,
             lastName:lastName,
             email:email,
 
-            // phone: $("#phone").val(),
-            // job_title: $("#job_title").val(),
+            phone: $("#phone").val(),
+            company_name: $("#company_name").val(),
+            country: $("#country").val(),
             website: $("#website").val(),
+            // job_title: $("#job_title").val(),
 
             // street_address: $("#street_address").val(),
             // city: $("#city").val(),
