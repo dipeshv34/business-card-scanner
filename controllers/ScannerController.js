@@ -196,21 +196,23 @@ class ScannerController extends BaseController {
 
   async submitForm (req, res){
     try {
-      const properties = {
-        firstname: req.body.firstName,
-        lastname: req.body.lastName,
-        email: req.body.email,
-        phone: req.body.phone,
-        website: req.body.website,
-        notes: req.body.notes,
-        hs_lead_status: req.body.lead_status,
-        inquiry_type: req.body.inquiry_type,
-        partner_category: req.body.partner_category,
-        partner_status: req.body.partner_status,
-        sales_owner: req.body.sales_owner,
-        company_name: req.body.company_name,
-        country: req.body.country
-      };
+      // const properties = {
+      //   firstname: req.body.firstname,
+      //   lastname: req.body.lastname,
+      //   email: req.body.email,
+      //   phone: req.body.phone,
+      //   website: req.body.website,
+      //   notes: req.body.notes,
+      //   hs_lead_status: req.body.lead_status___event,
+      //   inquiry_type: req.body.inquiry_type,
+      //   partner_category: req.body.partner_category,
+      //   partner_status: req.body.partner_status,
+      //   sales_owner: req.body.sales_owner,
+      //   company_name: req.body.company,
+      //   country: req.body.country
+      // };
+
+      const properties = req.body;
       const simplePublicObjectInputForCreate = { properties, associations: [] };
       const apiResponse = await this.hubspotClient.crm.contacts.basicApi.create(simplePublicObjectInputForCreate);
       return res.send({

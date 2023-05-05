@@ -631,7 +631,7 @@
 <!--</script>-->
 
 <script type="text/javascript">
-    var cameraEnvironment = 'user'
+    var cameraEnvironment = 'environment'
     $.ajax({
         url: '/get-form',
         type: "GET",
@@ -845,39 +845,46 @@
 
     $(document).on("click", "#submitForm", function (e) {
         e.preventDefault();
-        let firstName= $("#firstname").val();
-        let lastName= $("#lastname").val();
-        let email= $("#email").val();
-        const apiData = {
-            firstName:firstName,
-            lastName:lastName,
-            email:email,
+        // let firstName= $("#firstname").val();
+        // let lastName= $("#lastname").val();
+        // let email= $("#email").val();
+        // const apiData = {
+        //     firstName:firstName,
+        //     lastName:lastName,
+        //     email:email,
 
-            phone: $("#phone").val(),
-            company_name: $("#company_name").val(),
-            country: $("#country").val(),
-            website: $("#website").val(),
-            // job_title: $("#job_title").val(),
+        //     phone: $("#phone").val(),
+        //     company_name: $("#company_name").val(),
+        //     country: $("#country").val(),
+        //     website: $("#website").val(),
+        //     // job_title: $("#job_title").val(),
 
-            // street_address: $("#street_address").val(),
-            // city: $("#city").val(),
-            // state: $("#state").val(),
-            // postal_code: $("#postal_code").val(),
-            notes: $('textarea[name=notes]').val(),
-            lead_status:$('input[name=hs_lead_status]').val(),
-            inquiry_type:$('input[name=inquiry_type]').val(),
-            partner_category:$('select[name=partner_category]').val(),
-            partner_status:$('select[name=partner_status]').val(),
-            sales_owner:$('select[name=sales_owner]').val()
+        //     // street_address: $("#street_address").val(),
+        //     // city: $("#city").val(),
+        //     // state: $("#state").val(),
+        //     // postal_code: $("#postal_code").val(),
+        //     notes: $('textarea[name=notes]').val(),
+        //     lead_status:$('input[name=hs_lead_status]').val(),
+        //     inquiry_type:$('input[name=inquiry_type]').val(),
+        //     partner_category:$('select[name=partner_category]').val(),
+        //     partner_status:$('select[name=partner_status]').val(),
+        //     sales_owner:$('select[name=sales_owner]').val()
 
-        }
-        if(firstName==''){
+        // }
+
+        // const form = document.querySelector('form')
+        // const apiData = new FormData(form);
+        var apiData = $('form').serializeArray().reduce(function(obj, item) {
+            obj[item.name] = item.value;
+            return obj;
+        }, {});
+        if(apiData.firstName==''){
             return alert('First name required!');
         }
-        if(lastName==''){
+        if(apiData.lastName==''){
             return alert('Last name required!');
         }
-        if (email=='' || !(/^[\-0-9a-zA-Z\.\+_]+@[\-0-9a-zA-Z\.\+_]+\.[a-zA-Z]{2,}$/).test(email)){
+        if (apiData.email=='' || !(/^[\-0-9a-zA-Z\.\+_]+@[\-0-9a-zA-Z\.\+_]+\.[a-zA-Z]{2,}$/).test(apiData.email)){
             return  alert('Email is not valid.');
         }
         $.ajax({
@@ -885,6 +892,8 @@
             url: '/submit-form',
             data: apiData,
             dataType: "json",
+            // processData: false,
+            // cache : false,
             success: function (res, err) {
                 if (res.status) {
                     $(document).find('.step3').hide();
