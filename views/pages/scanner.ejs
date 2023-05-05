@@ -179,8 +179,8 @@
         }
 
         video {
-            -webkit-transform: scaleX(-1);
-            transform: scaleX(-1);
+            /*-webkit-transform: scaleX(-1);*/
+            /*transform: scaleX(-1);*/
             margin-top: 5px;
         }
 
@@ -659,11 +659,15 @@
                                         </label>
                                     </div>`
                 let formHTML = JSON.parse(res.data)
+                console.log(formHTML);
                 if(formHTML && formHTML.fieldGroups && formHTML.fieldGroups.length > 0) {
                     formHTML.fieldGroups.forEach(e => {
                         if(e.fields && e.fields.length > 0) {
                             // loop over fields
                             e.fields.forEach(field => {
+                                if(field.hidden==true){
+                                    setFormHTML +='<div style="display: none">'
+                                }
                                 if(field.fieldType === "single_line_text" || field.fieldType === "email") {
                                     setFormHTML += inputString.replace(/__NAME__/g, field.name).replace(/__LABEL__/g, field.label).replace(/__REQUIRED__/g, field.required)
                                 } else if (field.fieldType === "multi_line_text") {
@@ -695,7 +699,9 @@
                                     for (const option of field.options) {
                                         setFormHTML += checkboxString.replace(/__NAME__/g, field.name).replace(/__LABEL__/g, option.label).replace(/__VALUE__/g, option.value)
                                     }
-
+                                    if(field.hidden==true){
+                                        setFormHTML +='</div>'
+                                    }
                                     setFormHTML += `</div></div></div><br>`
                                 }
                             })
@@ -803,7 +809,7 @@
                         $(document).find('input[name="firstname"]').val(res.values.firstName)
                         $(document).find('input[name="lastname"]').val(res.values.lastName)
                         // $(`input[name="job_title"]`).val(res.values.job_title)
-                        $(document).find(`input[name="company_name"]`).val(res.values.company_name)
+                        $(document).find(`input[name="company"]`).val(res.values.company_name)
                         $(document).find(`input[name="country"]`).val(res.values.country)
                         // $('#street_address').val(res.values.address)
                         // $(`input[name="city"]`).val(res.values.city)
