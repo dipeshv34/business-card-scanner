@@ -27,7 +27,7 @@ class ScannerController extends BaseController {
         "method": "GET",
         "hostname": "api.hubapi.com",
         "port": null,
-        "path": "/marketing/v3/forms/",
+        "path": `/marketing/v3/forms/${process.env.HUBSPOT_FORM_ID}`,
         "headers": {
           "accept": "application/json",
           "authorization": `Bearer ${process.env.HUBSPOT_AUTH_TOKEN}`
@@ -50,6 +50,24 @@ class ScannerController extends BaseController {
           // return body
         });
       });
+
+
+      // var req = this.http.request(options, function (data) {
+      //   var chunks = [];
+      //   console.log(data);
+      //   data.on("data", function (chunk) {
+      //     chunks.push(chunk);
+      //   });
+      //
+      //   data.on("end", function () {
+      //     var body = Buffer.concat(chunks);
+      //     return res.send({
+      //       status: true,
+      //       data: body.toString()
+      //     })
+      //    // return body
+      //   });
+      // });
 
       req.end();
     } catch (e) {

@@ -659,8 +659,8 @@
                                         </label>
                                     </div>`
                 let formHTML = JSON.parse(res.data)
-                if(formHTML.results[0] && formHTML.results[0].fieldGroups && formHTML.results[0] && formHTML.results[0].fieldGroups.length > 0) {
-                    formHTML.results[0].fieldGroups.forEach(e => {
+                if(formHTML && formHTML.fieldGroups && formHTML.fieldGroups.length > 0) {
+                    formHTML.fieldGroups.forEach(e => {
                         if(e.fields && e.fields.length > 0) {
                             // loop over fields
                             e.fields.forEach(field => {
