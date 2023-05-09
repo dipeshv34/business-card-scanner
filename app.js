@@ -56,7 +56,7 @@ class App{
     
     this.app.use('/', this.indexRouter);
 
-    this.https = require("https")
+    this.https = require("http")
     this.port = this.normalizePort(process.env.PORT || "3000")
     this.app.set("port", this.port)
 
