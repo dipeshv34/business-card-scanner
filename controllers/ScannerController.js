@@ -142,11 +142,11 @@ class ScannerController extends BaseController {
             values['website']=arr[i];
 
             let websiteName = values['website'].replace('www.','');
-          const emailCompanyName=   websiteName.substring(0, websiteName.lastIndexOf('.'));
-          console.log('Company name===='+emailCompanyName);
+          const emailCompanyName=   websiteName.substring(0, websiteName.lastIndexOf('.')).trim();
+          values['company_name']=emailCompanyName.trim();
             for (let j = 0; j < arr.length; j++) {
-
               let master=arr[j].replace(/ /g,'');
+               master=master.trim();
               if (master.toLowerCase() == emailCompanyName.toLowerCase()) {
                 values['company_name']=arr[j];
                 // compareResultForName.push(this.compare(emailCompanyName, arr[j]))
