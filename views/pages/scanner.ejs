@@ -207,7 +207,7 @@
         .step4 {
             text-align: center;
             background-color: var(--white);
-        }  
+        }
 
         .steps .step.step3 h3 {
             margin-bottom: 30px;
@@ -276,7 +276,7 @@
         .formContainer form {
             width: 100%;
             max-width: 100%;
-        } 
+        }
 
         .formContainer form ul{
             list-style: none;
@@ -368,7 +368,7 @@
             background: var(--secondary);
             color: var(--white);
             border-color: var(--secondary);
-        } 
+        }
 
         @media(max-width: 640px) {
             .box-type {
@@ -716,88 +716,87 @@
 
 <script type="text/javascript">
     var cameraEnvironment = 'environment'
-    $.ajax({
-        url: '/get-form',
-        type: "GET",
-        success: function (res, err) {
-            if (res.status) {
-                let setFormHTML = '';
-                let inputString = `<li> <input type="text" name="__NAME__" id="__NAME__" class="field-style field-split align-left" placeholder="__LABEL__" required /></li>`
-                let textAreaString = `<li> <textarea  id="__NAME__" name="__NAME__" class="field-style" placeholder="__LABEL__" required=__REQUIRED__></textarea> </li>`
-                let optionString = `<option label="__LABEL__" value="__VALUE__">__LABEL__</option>`
-                let dropdownString = `<li style="display: block;text-align: left">
-                            <label id="__NAME__-label" for="__NAME__-input" class="hs-form__field__label hs-form__field__label--required" data-required="__REQUIRED__"><span>__SELECT_LABEL__: </span></label>
-                            <br><select id="__NAME__-input" class="field-style" name="__NAME__">
-                                <option label="Please Select" disabled="" value="">Please Select</option>`
-
-                let radioBtnString = `<div>
-                                    <label id="__NAME__-label-1">
-                                        <input id="__NAME__-input-1" type="radio" name="__NAME__" value="__VALUE__">
-                                        <span>__LABEL__</span>
-                                    </label>
-                                </div>`
-
-                let checkboxString = `<div style="align-self: flex-start; flex: 0 1 auto;"><label id="__NAME__-label-2" class="hs-form__field__label hs-form__field__checkbox__label">
-                                            <input id="__NAME__-input-2" class="hs-form__field__input hs-form__field__checkbox__input" type="checkbox" name="__NAME__" aria-invalid="false" aria-labelledby="__NAME__-label-2" aria-describedby="__NAME__-description" aria-required="true" aria-checked="false" value="__VALUE__">
-                                            <span class="hs-form__field__checkbox__label-text">__LABEL__</span>
-                                        </label>
-                                    </div>`
-                let formHTML = JSON.parse(res.data)
-                console.log(formHTML);
-                if (formHTML && formHTML.fieldGroups && formHTML.fieldGroups.length > 0) {
-                    formHTML.fieldGroups.forEach(e => {
-                        if (e.fields && e.fields.length > 0) {
-                            // loop over fields
-                            e.fields.forEach(field => {
-                                if (field.hidden == true) {
-                                    setFormHTML += '<div style="display: none">'
-                                }
-                                if (field.fieldType === "single_line_text" || field.fieldType === "email") {
-                                    setFormHTML += inputString.replace(/__NAME__/g, field.name).replace(/__LABEL__/g, field.label).replace(/__REQUIRED__/g, field.required)
-                                } else if (field.fieldType === "multi_line_text") {
-                                    setFormHTML += textAreaString.replace(/__NAME__/g, field.name).replace(/__LABEL__/g, field.label).replace(/__REQUIRED__/g, field.required)
-                                } else if (field.fieldType === "dropdown") {
-                                    setFormHTML += dropdownString.replace(/__NAME__/g, field.name).replace(/__SELECT_LABEL__/g, field.label).replace(/__REQUIRED__/g, field.required)
-                                    for (const option of field.options) {
-                                        setFormHTML += optionString.replace(/__LABEL__/g, option.label).replace(/__VALUE__/g, option.value)
-                                    }
-                                    setFormHTML += '</select></li><br>'
-                                } else if (field.fieldType === "radio") {
-                                    if (field.name === "hs_lead_status") {
-                                        setFormHTML += `<p class="hs-form__field__label" style="text-align: left;">${field.label}</p>`
-                                    }
-                                    setFormHTML += `<div style="text-align: left"> <div>`
-
-                                    for (const option of field.options) {
-                                        setFormHTML += radioBtnString.replace(/__NAME__/g, field.name).replace(/__VALUE__/g, option.value).replace(/__LABEL__/g, option.label)
-                                    }
-                                    setFormHTML += `</div></div><br>`
-                                } else if (field.fieldType === "multiple_checkboxes") {
-                                    setFormHTML += `<div class="hs-form__field hs-form__field-${field.name} hs-${field.name}" style="text-align: left">
-                                                <label id="${field.name}-label" for="${field.name}-input" class="hs-form__field__label hs-form__field__label--required" data-required="${field.required}">
-                                                    <p>${field.label}</p>
-                                                </label>
-                                                <div style="display: flex; flex-grow: 1; align-items: flex-start; justify-content: flex-start; flex-direction: row;">
-                                                    <div class="hs-form__field__options__container" role="group" aria-invalid="false" aria-labelledby="${field.name}-label" aria-describedby="${field.name}-description">`
-
-                                    for (const option of field.options) {
-                                        setFormHTML += checkboxString.replace(/__NAME__/g, field.name).replace(/__LABEL__/g, option.label).replace(/__VALUE__/g, option.value)
-                                    }
-                                    if (field.hidden == true) {
-                                        setFormHTML += '</div>'
-                                    }
-                                    setFormHTML += `</div></div></div><br>`
-                                }
-                            })
-                        }
-                    });
-                }
-
-                $('.submit').before(setFormHTML);
-            }
-        }
-    })
-
+    // $.ajax({
+    //     url: '/get-form',
+    //     type: "GET",
+    //     success: function(res, err) {
+    //         if(res.status) {
+    //             let setFormHTML = '';
+    //             let inputString = `<li> <input type="text" name="__NAME__" id="__NAME__" class="field-style field-split align-left" placeholder="__LABEL__" required /></li>`
+    //             let textAreaString = `<li> <textarea  id="__NAME__" name="__NAME__" class="field-style" placeholder="__LABEL__" required=__REQUIRED__></textarea> </li>`
+    //             let optionString = `<option label="__LABEL__" value="__VALUE__">__LABEL__</option>`
+    //             let dropdownString = `<li style="display: block;text-align: left">
+    //                         <label id="__NAME__-label" for="__NAME__-input" class="hs-form__field__label hs-form__field__label--required" data-required="__REQUIRED__"><span>__SELECT_LABEL__: </span></label>
+    //                         <br><select id="__NAME__-input" class="field-style" name="__NAME__">
+    //                             <option label="Please Select" disabled="" value="">Please Select</option>`
+    //
+    //             let radioBtnString = `<div>
+    //                                 <label id="__NAME__-label-1">
+    //                                     <input id="__NAME__-input-1" type="radio" name="__NAME__" value="__VALUE__">
+    //                                     <span>__LABEL__</span>
+    //                                 </label>
+    //                             </div>`
+    //
+    //             let checkboxString = `<div style="align-self: flex-start; flex: 0 1 auto;"><label id="__NAME__-label-2" class="hs-form__field__label hs-form__field__checkbox__label">
+    //                                         <input id="__NAME__-input-2" class="hs-form__field__input hs-form__field__checkbox__input" type="checkbox" name="__NAME__" aria-invalid="false" aria-labelledby="__NAME__-label-2" aria-describedby="__NAME__-description" aria-required="true" aria-checked="false" value="__VALUE__">
+    //                                         <span class="hs-form__field__checkbox__label-text">__LABEL__</span>
+    //                                     </label>
+    //                                 </div>`
+    //             let formHTML = JSON.parse(res.data)
+    //             console.log(formHTML);
+    //             if(formHTML && formHTML.fieldGroups && formHTML.fieldGroups.length > 0) {
+    //                 formHTML.fieldGroups.forEach(e => {
+    //                     if(e.fields && e.fields.length > 0) {
+    //                         // loop over fields
+    //                         e.fields.forEach(field => {
+    //                             if(field.hidden==true){
+    //                                 setFormHTML +='<div style="display: none">'
+    //                             }
+    //                             if(field.fieldType === "single_line_text" || field.fieldType === "email") {
+    //                                 setFormHTML += inputString.replace(/__NAME__/g, field.name).replace(/__LABEL__/g, field.label).replace(/__REQUIRED__/g, field.required)
+    //                             } else if (field.fieldType === "multi_line_text") {
+    //                                 setFormHTML += textAreaString.replace(/__NAME__/g, field.name).replace(/__LABEL__/g, field.label).replace(/__REQUIRED__/g, field.required)
+    //                             } else if (field.fieldType === "dropdown") {
+    //                                 setFormHTML += dropdownString.replace(/__NAME__/g, field.name).replace(/__SELECT_LABEL__/g, field.label).replace(/__REQUIRED__/g, field.required)
+    //                                 for (const option of field.options) {
+    //                                     setFormHTML += optionString.replace(/__LABEL__/g, option.label).replace(/__VALUE__/g, option.value)
+    //                                 }
+    //                                 setFormHTML += '</select></li><br>'
+    //                             } else if (field.fieldType === "radio") {
+    //                                 if(field.name === "hs_lead_status") {
+    //                                     setFormHTML += `<p class="hs-form__field__label" style="text-align: left;">${field.label}</p>`
+    //                                 }
+    //                                 setFormHTML += `<div style="text-align: left"> <div>`
+    //
+    //                                 for (const option of field.options) {
+    //                                     setFormHTML += radioBtnString.replace(/__NAME__/g, field.name).replace(/__VALUE__/g, option.value).replace(/__LABEL__/g, option.label)
+    //                                 }
+    //                                 setFormHTML += `</div></div><br>`
+    //                             } else if (field.fieldType === "multiple_checkboxes") {
+    //                                 setFormHTML += `<div class="hs-form__field hs-form__field-${field.name} hs-${field.name}" style="text-align: left">
+    //                                             <label id="${field.name}-label" for="${field.name}-input" class="hs-form__field__label hs-form__field__label--required" data-required="${field.required}">
+    //                                                 <p>${field.label}</p>
+    //                                             </label>
+    //                                             <div style="display: flex; flex-grow: 1; align-items: flex-start; justify-content: flex-start; flex-direction: row;">
+    //                                                 <div class="hs-form__field__options__container" role="group" aria-invalid="false" aria-labelledby="${field.name}-label" aria-describedby="${field.name}-description">`
+    //
+    //                                 for (const option of field.options) {
+    //                                     setFormHTML += checkboxString.replace(/__NAME__/g, field.name).replace(/__LABEL__/g, option.label).replace(/__VALUE__/g, option.value)
+    //                                 }
+    //                                 if(field.hidden==true){
+    //                                     setFormHTML +='</div>'
+    //                                 }
+    //                                 setFormHTML += `</div></div></div><br>`
+    //                             }
+    //                         })
+    //                     }
+    //                 });
+    //             }
+    //
+    //             $('.submit').before(setFormHTML);
+    //         }
+    //     }
+    // })
 </script>
 
 <script type="text/javascript">

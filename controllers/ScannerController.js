@@ -96,7 +96,6 @@ class ScannerController extends BaseController {
       let values={};
       if (req.files.length > 0) {
         [result] = await client.textDetection('./public/documentToScan/document.png');
-        console.log(result);
         const [annotation] = result.textAnnotations;
         const text = annotation ? annotation.description.trim() : '';
         arr=text.split(/\r?\n/);
@@ -118,17 +117,17 @@ class ScannerController extends BaseController {
           arr[i]=arr[i].slice(position);
           if(emailRegx.test(arr[i].trim())){
             values['email']=arr[i].replace(/^\s+|\s+$/gm,'');
-            const emailCompanyName = arr[i].substring(arr[i].indexOf("@"), arr[i].indexOf("."));
-
-            for (let j = 0; j < arr.length; j++) {
-              if(arr[j] == arr[i]) {
-                compareResultForName.push(Number.NEGATIVE_INFINITY)
-              } else {
-                compareResultForName.push(this.compare(emailCompanyName, arr[j]))
-              }
-            }
-
-            values["company_name"] = arr[compareResultForName.indexOf(Math.max(...compareResultForName))]
+            // const emailCompanyName = arr[i].substring(arr[i].indexOf("@"), arr[i].indexOf("."));
+            //
+            // for (let j = 0; j < arr.length; j++) {
+            //   if(arr[j] == arr[i]) {
+            //     compareResultForName.push(Number.NEGATIVE_INFINITY)
+            //   } else {
+            //     compareResultForName.push(this.compare(emailCompanyName, arr[j]))
+            //   }
+            // }
+            //
+            // values["company_name"] = arr[compareResultForName.indexOf(Math.max(...compareResultForName))]
           }
 
           // const mobileNumberRegx = /^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/gi
@@ -137,11 +136,22 @@ class ScannerController extends BaseController {
           if(mobileNumberRegx1.test(arr[i]) && mobileNumberRegx2.test(arr[i])){
             values['phone']=arr[i];
           }
-          console.log(arr[i]);
+
 
           if(arr[i].search("www")>-1){
 
             values['website']=arr[i];
+
+            const emailCompanyName = arr[i].substring(values['website'].indexOf("."), arr[i].length);
+            console.log(emailCompanyName);
+            for (let j = 0; j < arr.length; j++) {
+              if (arr[j] == arr[i]) {
+                compareResultForName.push(Number.NEGATIVE_INFINITY)
+              } else {
+                compareResultForName.push(this.compare(emailCompanyName, arr[j]))
+              }
+            }
+            values["company_name"] = arr[compareResultForName.indexOf(Math.max(...compareResultForName))]
           }
 
           if(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[ !"#$%£&'()*+,-.\/:;<=>?@[\\\]^_`{|}~])[A-Za-z\d !"#$£%&'()*+,-.\/:;<=>?[\\\]^_`{|}~]{1,300}$/.test(arr[i].trim())){
