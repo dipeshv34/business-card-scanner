@@ -100,7 +100,6 @@ class ScannerController extends BaseController {
         const text = annotation ? annotation.description.trim() : '';
         arr=text.split(/\r?\n/);
         let compareResultForName = [];
-
         values['address']='';
         values['firstName']='';
         for (let i=0; i<arr.length; i++){
@@ -142,16 +141,23 @@ class ScannerController extends BaseController {
 
             values['website']=arr[i];
 
-            const emailCompanyName = arr[i].substring(values['website'].indexOf("."), arr[i].length);
-            console.log(emailCompanyName);
+            let websiteName = values['website'].replace('www.','');
+          const emailCompanyName=   websiteName.substring(0, websiteName.lastIndexOf('.'));
+          console.log('Company name===='+emailCompanyName);
             for (let j = 0; j < arr.length; j++) {
-              if (arr[j] == arr[i]) {
-                compareResultForName.push(Number.NEGATIVE_INFINITY)
-              } else {
-                compareResultForName.push(this.compare(emailCompanyName, arr[j]))
+
+              let master=arr[j].replace(/ /g,'');
+              if (master.toLowerCase() == emailCompanyName.toLowerCase()) {
+                values['company_name']=arr[j];
+                // compareResultForName.push(this.compare(emailCompanyName, arr[j]))
+              //   compareResultForName.push(Number.NEGATIVE_INFINITY)
+              // } else {
+              //   if(arr[j]!==values['email']){
+              //     compareResultForName.push(this.compare(emailCompanyName, arr[j]))
+              //   }
               }
             }
-            values["company_name"] = arr[compareResultForName.indexOf(Math.max(...compareResultForName))]
+            // values["company_name"] = arr[compareResultForName.indexOf(Math.max(...compareResultForName))]
           }
 
           if(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[ !"#$%£&'()*+,-.\/:;<=>?@[\\\]^_`{|}~])[A-Za-z\d !"#$£%&'()*+,-.\/:;<=>?[\\\]^_`{|}~]{1,300}$/.test(arr[i].trim())){
@@ -173,7 +179,7 @@ class ScannerController extends BaseController {
           let listOfWords = values['address'].split(', ');
           listOfWords.forEach(word => {
             if(this.countries.includes(word.trim())) {
-              values['country']+= word;
+              values['country'] = word;
             }
           });
         }
