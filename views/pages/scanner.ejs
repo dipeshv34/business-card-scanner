@@ -886,14 +886,14 @@
                         $(document).find('.step2').hide();
                         $(document).find('.step3').show();
                         $(document).find('.hbspt-form').show();
-                        $(document).find('input[name="email"]').val(res.values.email)
-                        $(document).find('input[name="website"]').val(res.values.website)
-                        $(document).find(`input[name="phone"]`).val(res.values.phone)
-                        $(document).find('input[name="firstname"]').val(res.values.firstName)
-                        $(document).find('input[name="lastname"]').val(res.values.lastName)
+                        $(document).find('input[name="email"]').val(res.values.email).change()
+                        $(document).find('input[name="website"]').val(res.values.website).change()
+                        $(document).find(`input[name="phone"]`).val(res.values.phone).change()
+                        $(document).find('input[name="firstname"]').val(res.values.firstName).change()
+                        $(document).find('input[name="lastname"]').val(res.values.lastName).change()
                         // $(`input[name="job_title"]`).val(res.values.job_title)
-                        $(document).find(`input[name="company"]`).val(res.values.company_name)
-                        $(document).find(`input[name="country"]`).val(res.values.country)
+                        $(document).find(`input[name="company"]`).val(res.values.company_name).change()
+                        $(document).find(`input[name="country"]`).val(res.values.country).change()
                         // $('#street_address').val(res.values.address)
                         // $(`input[name="city"]`).val(res.values.city)
                         // $(`input[name="state"]`).val(res.values.state)
@@ -926,70 +926,70 @@
         return new Blob([ia], { type: mimeString });
     }
 
-    $(document).on("click", "#submitForm", function (e) {
-        e.preventDefault();
-        // let firstName= $("#firstname").val();
-        // let lastName= $("#lastname").val();
-        // let email= $("#email").val();
-        // const apiData = {
-        //     firstName:firstName,
-        //     lastName:lastName,
-        //     email:email,
-
-        //     phone: $("#phone").val(),
-        //     company_name: $("#company_name").val(),
-        //     country: $("#country").val(),
-        //     website: $("#website").val(),
-        //     // job_title: $("#job_title").val(),
-
-        //     // street_address: $("#street_address").val(),
-        //     // city: $("#city").val(),
-        //     // state: $("#state").val(),
-        //     // postal_code: $("#postal_code").val(),
-        //     notes: $('textarea[name=notes]').val(),
-        //     lead_status:$('input[name=hs_lead_status]').val(),
-        //     inquiry_type:$('input[name=inquiry_type]').val(),
-        //     partner_category:$('select[name=partner_category]').val(),
-        //     partner_status:$('select[name=partner_status]').val(),
-        //     sales_owner:$('select[name=sales_owner]').val()
-
-        // }
-
-        // const form = document.querySelector('form')
-        // const apiData = new FormData(form);
-        var apiData = $('form').serializeArray().reduce(function (obj, item) {
-            obj[item.name] = item.value;
-            return obj;
-        }, {});
-        if (apiData.firstName == '') {
-            return alert('First name required!');
-        }
-        if (apiData.lastName == '') {
-            return alert('Last name required!');
-        }
-        if (apiData.email == '' || !(/^[\-0-9a-zA-Z\.\+_]+@[\-0-9a-zA-Z\.\+_]+\.[a-zA-Z]{2,}$/).test(apiData.email)) {
-            return alert('Email is not valid.');
-        }
-        $.ajax({
-            type: "POST",
-            url: '/submit-form',
-            data: apiData,
-            dataType: "json",
-            // processData: false,
-            // cache : false,
-            success: function (res, err) {
-                if (res.status) {
-                    $(document).find('.step3').hide();
-                    $(document).find('.step4').show();
-                    setTimeout(function () {
-                        location.reload();
-                    }, 5000);
-                } else {
-                    alert("Unable to submit form");
-                }
-            }
-        })
-    })
+    // $(document).on("click", "#submitForm", function (e) {
+    //     e.preventDefault();
+    //     // let firstName= $("#firstname").val();
+    //     // let lastName= $("#lastname").val();
+    //     // let email= $("#email").val();
+    //     // const apiData = {
+    //     //     firstName:firstName,
+    //     //     lastName:lastName,
+    //     //     email:email,
+    //
+    //     //     phone: $("#phone").val(),
+    //     //     company_name: $("#company_name").val(),
+    //     //     country: $("#country").val(),
+    //     //     website: $("#website").val(),
+    //     //     // job_title: $("#job_title").val(),
+    //
+    //     //     // street_address: $("#street_address").val(),
+    //     //     // city: $("#city").val(),
+    //     //     // state: $("#state").val(),
+    //     //     // postal_code: $("#postal_code").val(),
+    //     //     notes: $('textarea[name=notes]').val(),
+    //     //     lead_status:$('input[name=hs_lead_status]').val(),
+    //     //     inquiry_type:$('input[name=inquiry_type]').val(),
+    //     //     partner_category:$('select[name=partner_category]').val(),
+    //     //     partner_status:$('select[name=partner_status]').val(),
+    //     //     sales_owner:$('select[name=sales_owner]').val()
+    //
+    //     // }
+    //
+    //     // const form = document.querySelector('form')
+    //     // const apiData = new FormData(form);
+    //     var apiData = $('form').serializeArray().reduce(function (obj, item) {
+    //         obj[item.name] = item.value;
+    //         return obj;
+    //     }, {});
+    //     if (apiData.firstName == '') {
+    //         return alert('First name required!');
+    //     }
+    //     if (apiData.lastName == '') {
+    //         return alert('Last name required!');
+    //     }
+    //     if (apiData.email == '' || !(/^[\-0-9a-zA-Z\.\+_]+@[\-0-9a-zA-Z\.\+_]+\.[a-zA-Z]{2,}$/).test(apiData.email)) {
+    //         return alert('Email is not valid.');
+    //     }
+    //     $.ajax({
+    //         type: "POST",
+    //         url: '/submit-form',
+    //         data: apiData,
+    //         dataType: "json",
+    //         // processData: false,
+    //         // cache : false,
+    //         success: function (res, err) {
+    //             if (res.status) {
+    //                 $(document).find('.step3').hide();
+    //                 $(document).find('.step4').show();
+    //                 setTimeout(function () {
+    //                     location.reload();
+    //                 }, 5000);
+    //             } else {
+    //                 alert("Unable to submit form");
+    //             }
+    //         }
+    //     })
+    // })
 </script>
 
 </html>
