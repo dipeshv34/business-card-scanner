@@ -462,7 +462,6 @@
             transform: translateY(-50%);
             background-color: #fff;
             color: #00ad00;
-            display: none;
         }
 
         .step3 .input {
@@ -1226,6 +1225,10 @@
            $(this).find('.inputValidate').css('display','block');
        }
     });
+
+    $(document).ready(function (){
+        $(document).find('.input').find('input[type=checkbox]').prop('checked',true);
+    })
 </script>
 
 </html>
