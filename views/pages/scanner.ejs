@@ -575,7 +575,7 @@
                                     <span>First name</span><span class="hs-form-required">*</span>
                                 </label>
                                 <div class="input"><input id="firstname" name="firstname" required="" placeholder="" type="text" class="hs-input" inputmode="text" autocomplete="given-name" disabled>
-                                    <input type="checkbox" name="firstname_checkbox" id="firstname_checkbox">
+                                    <input type="checkbox" name="firstname_checkbox" class="confirmation_checkbox" id="firstname_checkbox">
                                     <span class="inputValidate">✓</span>
                                 </div>
                             </div>
@@ -586,7 +586,7 @@
                                     <span>Last name</span><span class="hs-form-required">*</span>
                                 </label>
                                 <div class="input"><input id="lastname" name="lastname" required="" placeholder="" type="text" class="hs-input" inputmode="text" autocomplete="given-name" disabled>
-                                    <input type="checkbox" name="lastname_checkbox" id="lastname_checkbox">
+                                    <input type="checkbox" name="lastname_checkbox" id="lastname_checkbox" class="confirmation_checkbox">
                                     <span class="inputValidate">✓</span>
                                 </div>
                             </div>
@@ -599,7 +599,7 @@
                                 <legend class="hs-field-desc" style="display: none;"></legend>
                                 <div class="input">
                                     <input id="email" name="email" required="" placeholder="" type="email" class="hs-input invalid error" inputmode="email" autocomplete="email" value="" disabled>
-                                    <input type="checkbox" name="email_checkbox" id="email_checkbox">
+                                    <input type="checkbox" name="email_checkbox" id="email_checkbox" class="confirmation_checkbox">
                                     <span class="inputValidate">✓</span>
                                 </div>
                             </div>
@@ -1059,6 +1059,13 @@
                 }
             });
         });
+        $(document).find('.confirmation_checkbox').each(function (){
+           $(this).prop('checked',true);
+        });
+        $(document).find('.inputValidate').each(function (){
+           $(this).css("display","block");
+        });
+
     });
 
     function showHubspotForm() {
@@ -1225,10 +1232,6 @@
            $(this).find('.inputValidate').css('display','block');
        }
     });
-
-    $(document).ready(function (){
-        $(document).find('.input').find('input[type=checkbox]').prop('checked',true);
-    })
 </script>
 
 </html>
