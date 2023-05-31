@@ -111,7 +111,15 @@ class ScannerController extends BaseController {
               values['firstname']=fullname[0];
               values['lastname']=fullname[1];
             }
+          }
 
+          if(arr[i].match(/\s/g)!=null){
+            if(arr[i].match(/\s/g).length === 1){
+              let options=arr[i].split(' ');
+              arr.push(...options)
+              values['extra'+i]=options[0];
+              values['extra'+i]=options[1];
+            }
           }
           const emailRegx = /^[a-zA-Z0-9.!#$%&:'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/gi;
           let position = arr[i].search(":")+1;

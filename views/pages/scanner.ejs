@@ -1261,6 +1261,9 @@
                 showHubspotForm()
             }
         } else {
+            const updatedElement = $("#fieldTitle").attr('data-key')
+            let selectedValue = $('input[name="options"]:checked').val();
+            confirmData[updatedElement] = selectedValue;
             // Open hub staff form directly
             showHubspotForm()
         }
