@@ -455,14 +455,14 @@
             width: 100px;
             height: 100px;
         }
-        .step3 .inputValidate {
-            position: absolute;
-            top: 50%;
-            right: 5px;
-            transform: translateY(-50%);
-            background-color: #fff;
-            color: #00ad00;
-        }
+        /*.step3 .inputValidate {*/
+        /*    position: absolute;*/
+        /*    top: 50%;*/
+        /*    right: 5px;*/
+        /*    transform: translateY(-50%);*/
+        /*    background-color: #fff;*/
+        /*    color: #00ad00;*/
+        /*}*/
 
         .step3 .input {
             position: relative;
@@ -470,6 +470,19 @@
         .form-columns-1{
             border: none;
         }
+        .intuitive-border{
+            border: 1px solid #ccc;
+            position: absolute;
+            top: 50%;
+            right: 5px;
+            transform: translateY(-50%);
+            background-color: #fff;
+            color: #00ad00;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+        }
+
         /* Flipping the canvas image as it was not mirror view */
         /* #canvas */
     </style>
@@ -576,7 +589,7 @@
                                 </label>
                                 <div class="input"><input id="firstname" name="firstname" required="" placeholder="" type="text" class="hs-input" inputmode="text" autocomplete="given-name" disabled>
                                     <input type="checkbox" name="firstname_checkbox" class="confirmation_checkbox" id="firstname_checkbox">
-                                    <span class="inputValidate">✓</span>
+                                    <span class="intuitive-border"><span class="inputValidate">✓</span></span>
                                 </div>
                             </div>
 
@@ -587,7 +600,7 @@
                                 </label>
                                 <div class="input"><input id="lastname" name="lastname" required="" placeholder="" type="text" class="hs-input" inputmode="text" autocomplete="given-name" disabled>
                                     <input type="checkbox" name="lastname_checkbox" id="lastname_checkbox" class="confirmation_checkbox">
-                                    <span class="inputValidate">✓</span>
+                                    <span class="intuitive-border"><span class="inputValidate">✓</span></span>
                                 </div>
                             </div>
 
@@ -600,7 +613,7 @@
                                 <div class="input">
                                     <input id="email" name="email" required="" placeholder="" type="email" class="hs-input invalid error" inputmode="email" autocomplete="email" value="" disabled>
                                     <input type="checkbox" name="email_checkbox" id="email_checkbox" class="confirmation_checkbox">
-                                    <span class="inputValidate">✓</span>
+                                    <span class="intuitive-border"><span class="inputValidate">✓</span></span>
                                 </div>
                             </div>
                     </div>
@@ -826,7 +839,7 @@
                     <!--                    </form>-->
                 </div>
             </div>
-            <div class="step step4" style="background: none"><button class="stepChange alternate" data-trigger=".step2">Scan your card again!</button></div>
+            <div class="step step4" style="background: none"><button class="scan-again">Scan your card again!</button></div>
 
             <div class="step step5">
                 <div class="warpper-inner box-type">
@@ -993,6 +1006,28 @@
 </script>
 
 <script type="text/javascript">
+    $(document).ready(function (){
+         function getUrlParameter(sParam) {
+            var sPageURL = window.location.search.substring(1),
+                sURLVariables = sPageURL.split('&'),
+                sParameterName,
+                i;
+
+            for (i = 0; i < sURLVariables.length; i++) {
+                sParameterName = sURLVariables[i].split('=');
+
+                if (sParameterName[0] === sParam) {
+                    return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+                }
+            }
+            return false;
+        };
+        let scan = getUrlParameter('again');
+        if(scan=='true'){
+            $('.step').hide();
+            $('.step2').show()
+        }
+    });
     var scannedData, confirmData, unChecked = [];
     $(document).on("click", '#rotateCamera', function () {
         if (cameraEnvironment === 'user') {
@@ -1006,6 +1041,13 @@
         $('.step').hide();
         var target = $(this).attr('data-trigger');
         $(target).show()
+    });
+    $(document).find('.scan-again').on('click',function (){
+        var url = window.location.href;
+        if (url.indexOf('?') <= -1){
+            url += '?again=true'
+        }
+        window.location.href = url;
     });
 
     // Below code to capture image from Video tag (Webcam streaming)
