@@ -585,7 +585,7 @@
                             <!-- FirstName -->
                             <div class="hs_firstname hs-firstname hs-fieldtype-text field hs-form-field">
                                 <label id="label-firstname" class="" placeholder="Enter your First name" for="firstname">
-                                    <span>First name</span><span class="hs-form-required">*</span>
+                                    <span>First name</span>
                                 </label>
                                 <div class="input"><input id="firstname" name="firstname" required="" placeholder="" type="text" class="hs-input" inputmode="text" autocomplete="given-name" disabled>
                                     <input type="checkbox" name="firstname_checkbox" class="confirmation_checkbox" id="firstname_checkbox">
@@ -596,7 +596,7 @@
                             <!-- Lastname -->
                             <div class="hs_lastname hs-lastname hs-fieldtype-text field hs-form-field">
                                 <label id="label-lastname" class="" placeholder="Enter your Last name" for="lastname">
-                                    <span>Last name</span><span class="hs-form-required">*</span>
+                                    <span>Last name</span>
                                 </label>
                                 <div class="input"><input id="lastname" name="lastname" required="" placeholder="" type="text" class="hs-input" inputmode="text" autocomplete="given-name" disabled>
                                     <input type="checkbox" name="lastname_checkbox" id="lastname_checkbox" class="confirmation_checkbox">
@@ -616,6 +616,19 @@
                                     <span class="intuitive-border"><span class="inputValidate">✓</span></span>
                                 </div>
                             </div>
+                            <div class="hs_phone hs-email hs-fieldtype-text field hs-form-field">
+                                <label id="label-phone" class="" placeholder="Enter your phone no." for="phone">
+                                    <span>Phone</span>
+                                </label>
+                                <legend class="hs-field-desc" style="display: none;"></legend>
+                                <div class="input">
+                                    <input id="phone" name="phone" required="" placeholder="" type="email" class="hs-input invalid error" inputmode="phone" autocomplete="phone" value="" disabled>
+                                    <input type="checkbox" name="phone_checkbox" id="phone_checkbox" class="confirmation_checkbox">
+                                    <span class="intuitive-border"><span class="inputValidate">✓</span></span>
+                                </div>
+                            </div>
+                        </fieldset>
+
                     </div>
                     <div class="nextBtn" style="margin-top: 20px;">
                         <button class="btn btn-md btn-primary" id="nextBtnClick" data-step="main-step">Next</button>
@@ -640,7 +653,6 @@
                 <div class="warpper-inner">
 <!--                    <h3>This is the data we've found from the QR code.</h3>-->
                     <div class="formContainer">
-
                     </div>
                     <!--                    <form class="form-style-9 dynamicForm">-->
                     <!--                        <ul>-->
@@ -1078,6 +1090,7 @@
                         $(".validationForm").find('input[name="firstname"]').val(res.values.firstname).change()
                         $(".validationForm").find('input[name="lastname"]').val(res.values.lastname).change()
                         $(".validationForm").find('input[name="email"]').val(res.values.email).change()
+                        $(".validationForm").find('input[name="phone"]').val(res.values.phone).change()
                         scannedData = res.completeData;
                         confirmData = res.values;
                         // Add values directly to hubspot form
